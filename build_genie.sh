@@ -65,7 +65,7 @@ write_do_configure_script
 source do_configure.sh
 make -j4
 cd ../Reweight
-git checkout -b v1.2.0 R-1_20_00
+git checkout -b v1.2.0 R-1_02_00
 make -j4
 cd ..
 echo "DONE!"
