@@ -29,7 +29,8 @@ export LD_LIBRARY_PATH=${THIS_DIRECTORY}/pythia6:$NUWRO/lib:$NUWRO/bin:$LD_LIBRA
 export PATH=$NUWRO/bin:$PATH
 
 # Clone and build Nuisance
-git clone https://github.com/NUISANCEMC/nuisance.git
+#git clone https://github.com/NUISANCEMC/nuisance.git
+git clone https://github.com/afropapp13/nuisance.git
 cd nuisance
 mkdir build && cd build
 cmake -DUSE_GENIE=1 -DUSE_NuWro=1 -DUSE_NEUT=1 -DUSE_GiBUU=1  -DLIBXML2_LIB=$(xml2-config --libs)  ../
