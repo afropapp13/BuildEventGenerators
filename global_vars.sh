@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THIS_DIRECTORY="$(pwd)"
+THIS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 source /cvmfs/uboone.opensciencegrid.org/products/setup_uboone.sh
 
 setup root v6_12_06a -q e17:debug                                               

@@ -1,17 +1,6 @@
 #!/bin/bash
 
-./global_vars.sh
-
-#THIS_DIRECTORY="$(pwd)"
-#source /cvmfs/uboone.opensciencegrid.org/products/setup_uboone.sh
-
-#setup root v6_12_06a -q e17:debug                                               
-#setup lhapdf v5_9_1k -q e17:debug                                               
-#setup log4cpp v1_1_3a -q e17:debug                                              
-#setup pdfsets v5_9_1b                                                           
-#setup gdb v8_1                                                                  
-#setup git v2_15_1                                                                       
-#setup cmake v3_14_3
+source global_vars.sh
 
 # NEUT
 export NEUTROOT=${THIS_DIRECTORY}/neut
@@ -41,7 +30,9 @@ export PATH=$NUWRO/bin:$PATH
 
 # MARLEY
 export MARLEYROOT=${THIS_DIRECTORY}/marley
+# Avoid name collision caused by MARLEY setup script
+OLD_THIS_DIRECTORY=${THIS_DIRECTORY}
 source ${MARLEYROOT}/setup_marley.sh
 
 # NUISANCE
-source ${THIS_DIRECTORY}/build/Linux/setup.sh
+source ${OLD_THIS_DIRECTORY}/nuisance/build/Linux/setup.sh
