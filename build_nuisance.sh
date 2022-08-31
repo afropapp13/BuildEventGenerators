@@ -33,7 +33,7 @@ export PATH=$NUWRO/bin:$PATH
 git clone https://github.com/afropapp13/nuisance.git
 cd nuisance
 mkdir build && cd build
-cmake -DUSE_GENIE=1 -DUSE_NuWro=1 -DUSE_NEUT=1 -DUSE_GiBUU=1  -DLIBXML2_LIB=$(xml2-config --prefix)/lib -DNEUT_ROOT=${NEUTROOT}  ../
+cmake -DUSE_GENIE=1 -DUSE_NuWro=1 -DUSE_NEUT=1 -DUSE_GiBUU=1  -DLIBXML2_LIB=$(xml2-config --prefix)/lib -DNEUT_ROOT=${NEUTROOT} -DCMAKE_BUILD_TYPE=DEBUG  ../
 make
 make install
 
