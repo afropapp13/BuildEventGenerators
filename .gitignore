@@ -1,3 +1,7 @@
+build_nuisance_uB_CC1mu2p.sh
+setup_generators_nuisance_uB_CC1mu2p.sh
+
+Playground
 Generator
 Reweight
 GiBUU
@@ -5,3 +9,4 @@ neut
 nuwro
 marley
 nuisance
+nuisance_CC1mu2p

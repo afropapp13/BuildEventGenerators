@@ -7,11 +7,11 @@
 
 # The number of events used to calculate the cross sections: 
 
-number_of_test_events = 10
+number_of_test_events = 10000
 
 # The number of equally weighted events to be saved:
 
-number_of_events   = 10
+number_of_events   = 10000
  
 # Control the random seed persistence:
 
@@ -27,8 +27,11 @@ random_seed= 0   // 0 - use time(NULL) as a seed for random number generator
 
 # a beam defined by hand
 
-beam_type = 0       // single flavor beam
-beam_energy = 1000  // monoenergetic (in MeV)
+beam_type = 5       // beam flux
+#beam_energy = 1000  // monoenergetic (in MeV)
+
+# Incoming neutrino beam
+
 beam_particle = 14    // neutrino PDG
 
 # It is convenient to include one of the predefined beam specifications

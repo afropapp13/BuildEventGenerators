@@ -1,5 +1,5 @@
 C Number of events
-EVCT-NEVT 1000
+EVCT-NEVT 1000000
 C
 C Particle Code (14 = nmu)
 EVCT-IDPT 14
@@ -41,3 +41,6 @@ C Generate with Nieves 1p1h with LFG, revert to RFG with BBBA05 when not possibl
 NEUT-MDLQE 2002
 
 C (If you want spectral function, use NEUT-MDLQE 402)
+
+C NUCRES-RESCAT 0: on (default) 0: off (FSIs on: 1; FSIs off: 0)
+NUCRES-RESCAT 0
