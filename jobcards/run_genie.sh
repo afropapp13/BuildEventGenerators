@@ -12,15 +12,15 @@ gevgen -n $Events -p 14 -t 1000180400 -e 0.,10.  --event-generator-list CC --tun
 #gntpc -f gst -i gntp.0.ghep.root
 
 # Convert file from ghep to nuisance format
-PrepareGENIE -i gntp.0.ghep.root -t 1000180400[1] -o nuisance_gntp.0.gprep_G18_10a_02_11a.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv
+PrepareGENIE -i gntp.0.ghep.root -t 1000180400[1] -o GENIE_v3_0_6_G18_10a_02a.prep.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv
 
 # Convert to nuisance flat tree format
-nuisflat -i GENIE:nuisance_gntp.0.gprep_G18_10a_02_11a.root -o samples/GENIE_v3_0_6_G18_10a_02a.flat.root
+nuisflat -i GENIE:GENIE_v3_0_6_G18_10a_02a.prep.root -o samples/GENIE_v3_0_6_G18_10a_02a.flat.root
 
 # Remove all unnecessary files
 rm genie-mcjob-0.status 
 rm input-flux.root
 #rm gntp.0.ghep.root
- mv gntp.0.ghep.root samples/
+mv gntp.0.ghep.root samples/GENIE_v3_2_0_G18_10a_2_11a.ghep.root
 #rm nuisance_gntp.0.gprep_G18_10a_02_11a.root
-mv nuisance_gntp.0.gprep_G18_10a_02_11a.root samples/
+mv GENIE_v3_0_6_G18_10a_02a.prep.root samples/

@@ -9,7 +9,7 @@ nuwro -i NuWroCard_CC_Ar_uBFlux.txt -p "beam_particle = 14"  -p "beam_inputroot_
 PrepareNuwro -f eventsout.root -F MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o NuWroCard_CC_Ar_uBFlux.prep.root
 
 # Convert to Nuisance flat tree
-nuisflat -i NUWRO:NuWroCard_CC_Ar_uBFlux.prep.root -o samples/NuWro.flat.root
+nuisflat -i NUWRO:NuWro.prep.root -o samples/NuWro.flat.root
 
 # Remove unnecessary files
 rm eventsout.root.par
@@ -21,4 +21,4 @@ rm qv.txt
 rm totals.txt
 rm random_seed
 rm T.txt
-mv NuWroCard_CC_Ar_uBFlux.prep.root samples/
+mv NuWro.prep.root samples/

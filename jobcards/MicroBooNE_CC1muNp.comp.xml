@@ -1,0 +1,6 @@
+<nuisance>
+  <config UseSVDInverse="1" />
+  <config GENIE_DIR="/uboone/app/users/apapadop/BuildEventGenerators/jobcards/samples" />
+  <sample name="MicroBooNE_CC1MuNp_XSec_1Dcosmu_nu" 
+  input="GENIE:@GENIE_DIR/GENIE_v3_0_6_G18_10a_02a.prep.root" />
+</nuisance>
