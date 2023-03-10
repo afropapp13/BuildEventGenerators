@@ -108,7 +108,7 @@
 ! the number of generated events is proportional (but not equal, because some "events" can be in prohibited phase space)
 ! to target_A * numEnsembles * num_runs_SameEnergy
 &input
-	numEnsembles=100              ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory,
+	numEnsembles=3000              ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory,
 	eventtype=5                     ! 5=neutrino, 200=simple transport of a given particle
 	numTimeSteps=200               ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
 	                                ! numTimeSteps= 0 for inclusive cross sections
@@ -121,7 +121,7 @@
 	printParticleVectors=.true.
 	freezeRealParticles=.true.
 	LRF_equals_CALC_frame=.true.          !if .false.: no offshelltransport possible
-	path_to_input='../GiBUU/buuinput'  ! for local run cluster
+	path_to_input='/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/buuinput'  ! for local run cluster
 /
 
 
