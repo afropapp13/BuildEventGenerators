@@ -1,5 +1,7 @@
-#!/bin/bash                                                                                                                                                                                                       
-source global_vars.sh
+#!/bin/bash                                                                                                                                                                                              
+
+BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
+source ${BASE_DIR}/global_vars.sh         
 
 # Cloning the NEUT repo
 #git clone https://github.com/neut-devel/neut.git
@@ -13,7 +15,7 @@ cd neutbuild
 ./build_neut.sh ../
 
 # Exporting all the paths
-export CERNLIB=${THIS_DIRECTORY}/neut/neutbuild/cernlib/cernlib_build
+export CERNLIB=${BASE_DIR}/neut/neutbuild/cernlib/cernlib_build
 export CERN=${CERNLIB}
 export CERN_LEVEL=2005
 
