@@ -1,8 +1,11 @@
 build_nuisance_uB_CC1mu2p.sh
 setup_generators_nuisance_uB_CC1mu2p.sh
 FlatTreeAnalyzer
-
 GENIE_v3_2_0
+GENIE_v3_4_0_RS
+GENIE_v3_0_6
+Achilles
+Achilles_feature
 Playground
 Generator
 Reweight
@@ -12,3 +15,9 @@ nuwro
 marley
 nuisance
 nuisance_CC1mu2p
+build_genie_v3_0_6.sh
+build_genie_v3_4_0_RS.sh
+genie_env_v3_4_0_RS.sh
+genie_env_v3_0_6.sh
+genie_env_v3_2_0.sh
+Kirsty_NuWro_MicroBooNE_CC1mu1p.comp.xml

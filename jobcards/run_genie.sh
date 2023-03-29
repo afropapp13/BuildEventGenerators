@@ -1,26 +1,31 @@
 #!/bin/bash
 
-export Events=1000
+export events="1000"
+export version="v3_4_0"
+export tune="G18_10a_02_11a"
+export probe="14"
+export target="1000180400"
+export interaction="CC"
+export minE="0."
+export maxE="10."
+export fluxfile="/uboone/app/users/apapadop/BuildEventGenerators/jobcards/MCC9_FluxHist_volTPCActive.root"
+export fluxhisto="hEnumu_cv"
 
 # Produce the GENIE splines
-#gmkspl -p 14 -t 1000180400 -e 10 -o 14_1000180400_Default_G18_10a_02_11a.xml --tune G18_10a_02_11a --event-generator-list CC
+#gmkspl -p ${probe} -t ${target} -e ${maxE} -o ${probe}_${target}_${interaction}_${version}_${tune}.xml --tune ${tune} --event-generator-list ${interaction}
 
 # Generate GENIE events
-gevgen -n $Events -p 14 -t 1000180400 -e 0.,10.  --event-generator-list CC --tune G18_10a_02_11a --cross-sections 14_1000180400_Default_G18_10a_02_11a.xml -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv
+gevgen -n $events -p ${probe} -t ${target} -e ${minE},${maxE}  --event-generator-list ${interaction} --tune ${tune} --cross-sections ${probe}_${target}_${interaction}_${version}_${tune}.xml -f ${fluxfile},${fluxhisto} -o samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root
 
 # Convert file from ghep to gst
-#gntpc -f gst -i gntp.0.ghep.root
+gntpc -f gst -i samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root -o samples/${probe}_${target}_${interaction}_${version}_${tune}.gst.root
 
 # Convert file from ghep to nuisance format
-PrepareGENIE -i gntp.0.ghep.root -t 1000180400[1] -o GENIE_v3_0_6_G18_10a_02a.prep.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv
+PrepareGENIE -i samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root -t ${target}[1] -o samples/${probe}_${target}_${interaction}_${version}_${tune}.gprep.root -f ${fluxfile},${fluxhisto}
 
 # Convert to nuisance flat tree format
-nuisflat -i GENIE:GENIE_v3_0_6_G18_10a_02a.prep.root -o samples/GENIE_v3_0_6_G18_10a_02a.flat.root
+nuisflat -i GENIE:samples/${probe}_${target}_${interaction}_${version}_${tune}.gprep.root -o samples/${probe}_${target}_${interaction}_${version}_${tune}.flat.root
 
 # Remove all unnecessary files
-rm genie-mcjob-0.status 
+#rm *.status 
 rm input-flux.root
-#rm gntp.0.ghep.root
-mv gntp.0.ghep.root samples/GENIE_v3_2_0_G18_10a_2_11a.ghep.root
-#rm nuisance_gntp.0.gprep_G18_10a_02_11a.root
-mv GENIE_v3_0_6_G18_10a_02a.prep.root samples/
