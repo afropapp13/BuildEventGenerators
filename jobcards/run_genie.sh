@@ -14,6 +14,9 @@ export fluxhisto="hEnumu_cv"
 # Produce the GENIE splines
 #gmkspl -p ${probe} -t ${target} -e ${maxE} -o ${probe}_${target}_${interaction}_${version}_${tune}.xml --tune ${tune} --event-generator-list ${interaction}
 
+# Convert the xml splines to root format
+gspl2root -f ${probe}_${target}_${interaction}_${version}_${tune}.xml --event-generator-list ${interaction} -p ${probe} -t ${target} -o ${probe}_${target}_${interaction}_${version}_${tune}.root --tune ${tune}
+
 # Generate GENIE events
 gevgen -n $events -p ${probe} -t ${target} -e ${minE},${maxE}  --event-generator-list ${interaction} --tune ${tune} --cross-sections ${probe}_${target}_${interaction}_${version}_${tune}.xml -f ${fluxfile},${fluxhisto} -o samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root
 

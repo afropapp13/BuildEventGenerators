@@ -1,3 +1,11 @@
+genie_env.sh
+Achilles_master/
+GENIE_v3_2_0_G4/
+GENIE_v3_4_0_G4/
+build_genie_v3_2_0_G4.sh
+build_genie_v3_4_0_G4.sh
+genie_env_v3_2_0_G4.sh
+genie_env_v3_4_0_G4.sh
 build_nuisance_uB_CC1mu2p.sh
 setup_generators_nuisance_uB_CC1mu2p.sh
 FlatTreeAnalyzer

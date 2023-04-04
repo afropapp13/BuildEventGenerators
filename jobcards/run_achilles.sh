@@ -18,14 +18,9 @@ setup git v2_15_1
 setup cmake v3_14_3
 setup hdf5 v1_12_0b -q e20:prof 
 
-git clone https://github.com/AchillesGen/Achilles
-cd Achilles
-git checkout 6ff810ad7e3fa5daa5f94d7f5c52a93070664433
-
-mkdir build && cd build
-cmake .. -DENABLE_BSM=OFF -DUSE_ROOT=ON
-make -j4
+cd ../Achilles/build
 
 export LD_LIBRARY_PATH=/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/lib64/:$LD_LIBRARY_PATH
 
-cd $BASE_DIR
+./bin/achilles run_uboone.yml 
+
