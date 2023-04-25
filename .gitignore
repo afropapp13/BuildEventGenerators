@@ -29,3 +29,10 @@ genie_env_v3_4_0_RS.sh
 genie_env_v3_0_6.sh
 genie_env_v3_2_0.sh
 Kirsty_NuWro_MicroBooNE_CC1mu1p.comp.xml
+GENIE_v3_0_6_G4/
+Reweight_v3_4_0_G4/
+build_genie_v3_0_6_G4.sh
+build_nuisance_G4.sh
+genie_env_v3_0_6_G4.sh
+nuisance_G4/
+setup_generators_G4.sh

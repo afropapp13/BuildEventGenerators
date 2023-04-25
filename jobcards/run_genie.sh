@@ -15,13 +15,13 @@ export fluxhisto="hEnumu_cv"
 #gmkspl -p ${probe} -t ${target} -e ${maxE} -o ${probe}_${target}_${interaction}_${version}_${tune}.xml --tune ${tune} --event-generator-list ${interaction}
 
 # Convert the xml splines to root format
-gspl2root -f ${probe}_${target}_${interaction}_${version}_${tune}.xml --event-generator-list ${interaction} -p ${probe} -t ${target} -o ${probe}_${target}_${interaction}_${version}_${tune}.root --tune ${tune}
+gspl2root -f ${probe}_${target}_${interaction}_${version}_${tune}.xml --event-generator-list ${interaction} -p ${probe} -t ${target} -o ${probe}_${target}_${interaction}_${version}_${tune}.xml.root --tune ${tune}
 
 # Generate GENIE events
 gevgen -n $events -p ${probe} -t ${target} -e ${minE},${maxE}  --event-generator-list ${interaction} --tune ${tune} --cross-sections ${probe}_${target}_${interaction}_${version}_${tune}.xml -f ${fluxfile},${fluxhisto} -o samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root
 
 # Convert file from ghep to gst
-gntpc -f gst -i samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root -o samples/${probe}_${target}_${interaction}_${version}_${tune}.gst.root
+gntpc -f gst -i samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root -o samples/${probe}_${target}_${interaction}_${version}_${tune}.gst.root --tune ${tune}
 
 # Convert file from ghep to nuisance format
 PrepareGENIE -i samples/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root -t ${target}[1] -o samples/${probe}_${target}_${interaction}_${version}_${tune}.gprep.root -f ${fluxfile},${fluxhisto}

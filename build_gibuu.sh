@@ -25,7 +25,7 @@ cd ../release
 # do make buildRootTuple_POS  (version of the ntupler with the vtx location w/in the nucleus)
 # Then re-run make withROOT
 
-#make buildRootTuple_POS
-make buildRootTuple
+make buildRootTuple_POS
+#make buildRootTuple
 
 make withROOT=1

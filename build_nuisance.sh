@@ -20,7 +20,7 @@ export LD_LIBRARY_PATH=${GENIE}/lib:${GENIE_REWEIGHT}/lib:${LD_LIBRARY_PATH}
 export LIBRARY_PATH=${LIBRARY_PATH}:${GENIE_REWEIGHT}/lib
 
 ## Set up GiBUU (run via the "gibuu" symbolic link to GiBUU.x)
-export PATH=${PATH}:${BASE_DIR}/GiBUU2021
+export PATH=${PATH}:${BASE_DIR}/GiBUU
 
 ## Set up NuWro
 #export PYTHIA6=$PYTHIA6_LIBRARY
@@ -30,10 +30,12 @@ export LD_LIBRARY_PATH=${PYTHIA6}:$NUWRO/bin:$LD_LIBRARY_PATH
 export PATH=$NUWRO/bin:$PATH
 
 # Clone and build Nuisance
-#git clone https://github.com/NUISANCEMC/nuisance.git
-git clone https://github.com/afropapp13/nuisance.git
+git clone https://github.com/NUISANCEMC/nuisance.git
+#git clone https://github.com/afropapp13/nuisance.git
 cd nuisance
-mkdir build && cd build
+#git checkout v2r8
+mkdir build
+cd build
 cmake -DUSE_GENIE=1 -DUSE_NuWro=1 -DUSE_NEUT=1 -DUSE_GiBUU=1  -DLIBXML2_LIB=$(xml2-config --prefix)/lib -DNEUT_ROOT=${NEUTROOT} -DCMAKE_BUILD_TYPE=DEBUG  ../
 make
 make install

@@ -5,16 +5,6 @@ cat > ./genie_env.sh << 'EOF'
 #!/bin/bash
 
 source ../global_vars.sh
-
-#source /grid/fermiapp/products/larsoft/setups
-
-#setup root v6_12_06a -q e17:debug
-#setup lhapdf v5_9_1k -q e17:debug
-#setup log4cpp v1_1_3a -q e17:debug
-#setup pdfsets v5_9_1b
-#setup gdb v8_1
-#setup git v2_15_1
-
 echo "Setting GENIE environment variables..."
 
 # Finds the directory where this script is located. This method isn't
