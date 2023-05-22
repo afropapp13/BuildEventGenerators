@@ -36,8 +36,11 @@ cd nuisance
 #git checkout v2r8
 mkdir build
 cd build
-cmake -DUSE_GENIE=1 -DUSE_NuWro=1 -DUSE_NEUT=1 -DUSE_GiBUU=1  -DLIBXML2_LIB=$(xml2-config --prefix)/lib -DNEUT_ROOT=${NEUTROOT} -DCMAKE_BUILD_TYPE=DEBUG  ../
+# old fashioned config
+#cmake -DUSE_GENIE=1 -DUSE_NuWro=1 -DUSE_NEUT=1 -DUSE_GiBUU=1  -DLIBXML2_LIB=$(xml2-config --prefix)/lib -DNEUT_ROOT=${NEUTROOT} -DCMAKE_BUILD_TYPE=DEBUG  ../
+# new config after May 22 2023
+cmake -DGENIE_ENABLED=ON -DNuWro_ENABLED=ON -DNEUT_ENABLED=ON -DGiBUU_ENABLED=ON -DCMAKE_BUILD_TYPE=DEBUG  ../
 make
 make install
 
-sed -i 's/add_to_LD_LIBRARY_PATH "\/uboone\/app\/users\/apapadop\/BuildEventGenerators\/nuwro\/build\/Linux\/lib"/ /g' Linux/setup.sh
+#sed -i 's/add_to_LD_LIBRARY_PATH "\/uboone\/app\/users\/apapadop\/BuildEventGenerators\/nuwro\/build\/Linux\/lib"/ /g' Linux/setup.sh
