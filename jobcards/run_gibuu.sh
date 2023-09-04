@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Generate GiBUU events
-/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/release/testRun/./GiBUU.x < GiBUU_MicroBooNE_numu.job
+# GiBUU 2023
+/uboone/app/users/apapadop/BuildEventGenerators/GiBUU2023/release/testRun/./GiBUU.x < GiBUU2023_MicroBooNE_numu.job
+# GiBUU 2021
+#/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/release/testRun/./GiBUU.x < GiBUU_MicroBooNE_numu.job
 
 # Convert to Nuisance format
 PrepareGiBUU -i EventOutput.Pert.00000001.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU.prep.root

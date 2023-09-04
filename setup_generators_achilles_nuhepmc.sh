@@ -22,10 +22,7 @@ export LIBRARY_PATH=${LIBRARY_PATH}:${GENIE_REWEIGHT}/lib
 #echo "GENIE setup is ready!"
 
 # Set up GiBUU (run via the "gibuu" symbolic link to GiBUU.x)
-# GiBUU 2023
-export PATH=${PATH}:${BASE_DIR}/GiBUU2023/release/testRun
-# GiBUU 2021
-#export PATH=${PATH}:${BASE_DIR}/GiBUU/release/testRun
+export PATH=${PATH}:${BASE_DIR}/GiBUU/release/testRun
 #echo "GiBUU setup is ready!"
 
 # NuWro
@@ -41,5 +38,5 @@ source ${MARLEYROOT}/setup_marley.sh
 #echo "MARLEY setup is ready!"
 
 # NUISANCE
-source ${BASE_DIR}/nuisance/build/Linux/setup.sh
+source ${BASE_DIR}/nuisance_achilles/build/Linux/setup.sh
 #echo "NUISANCE setup is ready!"

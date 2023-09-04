@@ -1,3 +1,17 @@
+achilles_nuhepmc3/
+build_genie_v3_4_0_INCL.sh
+build_nuisance_achilles.sh
+genie_env_v3_4_0_INCL.sh
+global_vars_INCL.sh
+jobcards/run_genie_0_3GeV_G18.sh
+jobcards/run_genie_0_5GeV_G18.sh
+jobcards/run_genie_0_8GeV_G18.sh
+jobcards/run_genie_1GeV_G18.sh
+jobcards/run_genie_3GeV_G18.sh
+microboone.achilles.flat.root
+nuisance_achilles/
+Achilles_Working/
+GiBUU2023/
 genie_env.sh
 Achilles_master/
 GENIE_v3_2_0_G4/
