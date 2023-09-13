@@ -1,3 +1,44 @@
+!--------------------------------------------------------- -*- fortran -*- ----
+!* MasterJobCard for eventType=5 (neutrino induced)
+!------------------------------------------------------------------------------
+! please visit the GiBUU homepage for further information:
+! gibuu.hepforge.org
+!------------------------------------------------------------------------------
+! DON'T  FORGET to change  "path_to_input" in the namelist @input according to your local GiBUU installation
+!------------------------------------------------------------------------------
+! This jobcard is set up for BNB flux, to use another flux change "nuExp" in the namelist &neutrino_induced
+!------------------------------------------------------------------------------
+! In this jobcard most of the analysis is switched OFF, see namelist &neutrinoAnalysis;
+! the output of final events and particles in each event is given to the file FinalEvents.dat
+! to turn it OFF switch outputEvents=.false. in the namelist &neutrinoAnalysis
+!
+! To produce the output in the LesHouches format to files
+!  * LesHouches.Pert.00000001.xml
+!  * LesHouches.Pert.00000002.xml (and so on, separate file for each subsequent run)
+!  switch LesHouchesFinalParticles_Pert=.true.  in the namelist  &LesHouches
+!
+!******************************************************************************
+! Some hints on output:
+!
+! for kinetic energy distribution of pions see diff_000_dSigma_dEkin_pi_charge..... .dat  (1 pion in the final state )
+! for kinetic energy distribution of nucleons see diff_000_dSigma_dEkin_N_charge..... .dat  (1 pion in the final state )
+! for kinetic energy distribution of kaons see diff_000_dSigma_dEkin_K_charge..... .dat  (1 pion in the final state )
+!       these files will only be in output if in the namelist &detailed_diff  you set forkaon=.true.
+!       the same applies for eta, antikaons, Lambda and Sigma hyperons
+! to change the maximal kinetic energy (in the output file only) and binning, change ekinMax and dEkin  in the same namelist
+!
+! for Q2, outgoing-lepton-kinetic-energy and outgoing-lepton-angle-with-respect-to-neutrino-direction  distributions
+!       for "0 pion in the final state" (QE-like) events see  files diff_000_dSigma_ ..... lepton_no_pi.dat
+!       These will only appear on the output only if specificEventAnalysis=.true. and  in the namelist &nl_specificEvent you set no_pi=.true.
+!       In the same namelist other type of final states can also be choosen, output will be produced for all of them
+!
+! For energy reconstruction and oscillation analysis for the specific final states, as set in the &nl_specificEvent,
+!       set "reconstruct_neutrino_energy=.true. ; for output see files reconstruction....dat   and oscillation....dat
+!
+
+
+!##############################################################################
+!init flags
 !##############################################################################
 !******************************************************************************
 ! neutrino init:
@@ -5,34 +46,17 @@
 ! file: code/init/neutrino/initNeutrino.f90
 
 &neutrino_induced
-       process_ID      =  2 ! 2:CC, 3:NC, -2:antiCC, -3:antiNC
-       flavor_ID       =  2 ! 1:electron, 2:muon, 3:tau
+      process_ID      =  2      ! 2:CC, 3:NC, -2:antiCC, -3:antiNC
+      flavor_ID       =  2      ! 1:electron, 2:muon, 3:tau
 !
-
-!       nuXsectionMode  =  0 !  0: integratedSigma
-!       nuXsectionMode  =  1 !  1: dSigmadCosThetadElepton
-!       nuXsectionMode  =  2 !  2: dSigmadQsdElepton
-!       nuXsectionMode  =  3 !  3: dSigmadQs
-!       nuXsectionMode  =  4 !  4: dSigmadCosTheta
-!       nuXsectionMode  =  5 !  5: dSigmadElepton
+!       for calculations with given, fixed neutrino energy
 !       nuXsectionMode  =  6 !  6: dSigmaMC
-!       nuXsectionMode  =  7 !  7: dSigmadW
-!       nuXsectionMode  = 10 ! 10: EXP_dSigmadEnu
-!       nuXsectionMode  = 11 ! 11: EXP_dSigmadCosThetadElepton
-!       nuXsectionMode  = 12 ! 12: EXP_dSigmadQsdElepton
-!       nuXsectionMode  = 13 ! 13: EXP_dSigmadQs
-!       nuXsectionMode  = 14 ! 14: EXP_dSigmadCosTheta
-!       nuXsectionMode  = 15 ! 15: EXP_dSigmadElepton
-!       nuXsectionMode  = 16 ! 16: EXP_dSigmaMC
-!       nuXsectionMode  = 17 ! 17: EXP_dSigmadW
-
-!   for calculations with given, fixed neutrino energy
-!       nuXsectionMode  =  6 !  6: dSigmaMC
-!   calculation for flux-veraged cross sections (choose with flag nuExp): above  plus 10
-        nuXsectionMode  = 16 ! 16: EXP_dSigmaMC
+! calculation for flux-veraged cross sections (choose with flag nuExp): above  plus 10
+      nuXsectionMode  = 16      ! 16: EXP_dSigmaMC
 !
-!   The values for nuExp are ! only relevant if nuXsectionmode.ge.10
+! The values for nuExp are ! only relevant if nuXsectionmode.ge.10
 !
+! Which experiment:
 !       nuExp           =  0 !  0: noExp
 !       nuExp           =  1 !  1: MiniBooNE-nu
 !       nuExp           =  2 !  2: ANL
@@ -41,66 +65,74 @@
 !       nuExp           =  5 !  5: MinibooNE-barnu
 !       nuExp           =  6 !  6: MINOS-numu-numode
 !       nuExp           =  7 !  7: MINOS-barnumu-numode
-!       nuExp           =  8 !  8: NOvA
+!       nuExp           =  8 !  8: NOvA FD
+!       nuExp           = 21 ! 23: microB numu
+!		nuExp           = 22 ! 22: MicroB numubar
+!       nuExp           = 23 ! 23: NOvA ND
 !       nuExp           =  9 !  9: T2K-OA2.5-ND280
 !       nuExp           = 10 ! 10: uniform-distribution
 !       nuExp           = 11 ! 11: MINOS-numu-barnumode
 !       nuExp           = 12 ! 12: MINOS-barnumu-barnumode
-!       nuExp           = 13 ! 13: MINERvA-nu   (rebinned flux from 0.0 GeV to 20 GeV)
-!       nuExp           = 14 ! 14: MINERvA-barnu  (flux from 1.5 GeV to 20 GeV)
-!       nuExp           = 15 ! 15: DUNE neutrino mode flux
-!       nuExp           = 16 ! 16: DUNE antineutrino mode flux
+!       nuExp           = 13 ! 13: MINERvA-nu   (flux from 0.0 GeV to 20 GeV)
+!       nuExp           = 14 ! 14: MINERvA-barnu  (flux from 0.0 GeV to 20 GeV)
+!       nuExp           = 15 ! 15: DUNE ND neutrino mode flux
+!       nuExp           = 16 ! 16: DUNE ND antineutrino mode flux
 !       nuExp           = 17 ! 17: LBNO
 !       nuExp           = 18 ! 18: NOMAD
 !       nuExp           = 19 ! 19: BNB nue
 !       nuExp           = 20 ! 10: BNB nuebar
        nuExp           = 21 ! 21: BNB numu
 !       nuExp           = 22 ! 22: BNB numubar
+!       nuExp           = 23 ! NOvA ND    !various modes for near detector                                       
+!       nuExp           = 24 ! T2K on axis beam (INGRID)
+!       nuExp           = 25 ! 25: MINERvA new 2016 flux
+!       nuExp           = 99 ! new, own flux. Must be in buuinput as .dat file 
+                             ! with 2 columns,
+                             ! 1st col: energy, 2nd col: flux,
+                             ! energies must be linear and equidistant
+                             ! name of the flux file is given in the next line: 
+       FileNameFlux = '/afs/cern.ch/work/u/umosel/GiBUU/buuinput/neutrino/MINERvA_MEflux.dat'
+                             ! for nuExp=99
+                             ! this is an example for the MINERvA medium energy
+                             ! flux, but any other flux could be inserted here
 !
-!   subprocesses to take into account
        includeQE       = T
        includeDELTA    = T
        includeRES      = T
-       include1pi      = T       ! 1pi background contribution
+       include1pi      = T      ! 1pi background contribution
        includeDIS      = T
        include2p2hQE   = T
+       include2pi      = T      ! 2pi background contribution
+
+       printAbsorptionXS = T
 /
 
-!   Flux cuts
-&nl_fluxcuts
-!       Enu_lower_cut    = 0.0
-!       Enu_upper_cut    = 20.0
-!       energylimit_for_Qsrec = T   ! switch for using fluxcuts also in Q^2 reconstr.
-/
-!
 
 
 
 ! file: code/density/nucleus.f90
 &target
-	target_Z=18
-	target_A=40
-	densitySwitch_Static=2          ! 0: density=0.0, 1: Wood-Saxon by Lenske, 2 : NPA 554, 3: Wood-Saxon by Lenske, different neutron and proton radii,
+      target_Z=18
+      target_A=40
+      densitySwitch_Static=1    ! 0: density=0.0, 1: Wood-Saxon by Lenske, 2 : NPA 554, 3: Wood-Saxon by Lenske, different neutron and proton radii,
 					! 5: density distribution is a sphere with density according to the input value of "fermiMomentum_input".
-	fermiMomentum_input=0.220       ! Input value of the fermi momentum for densitySwitch_static=5., default was 0.225
-	fermiMotion=.true.
-	ReAdjustForConstBinding=.true.
-  ConstBinding=-0.008             ! only valid for ReAdjustForConstBinding=true
+      fermiMomentum_input=0.225 ! Input value of the fermi momentum for densitySwitch_static=5.
+      fermiMotion=.true.
+      ReAdjustForConstBinding=.true.
+!     ConstBinding=-0.008             ! only valid for ReAdjustForConstBinding=true
 /
 
 ! file: code/density/density.f90
 &initDensity
-    densitySwitch=2                 ! 1=dynamic density according to testparticle density, 2=analytic density prescription
+      densitySwitch=2           ! 1=dynamic density according to testparticle density, 2=analytic density prescription
 /
 
 ! file: code/density/pauliBlocking.f90
 &initPauli
-    pauliSwitch=2                   ! 1=dynamic, 2=analytic
+      pauliSwitch=2             ! 1=dynamic, 2=analytic
 /
-
-
 !##############################################################################
-! general input, controls among others, the statistics of output
+! general input, controls among others the statistics of output
 !##############################################################################
 
 
@@ -108,41 +140,82 @@
 ! the number of generated events is proportional (but not equal, because some "events" can be in prohibited phase space)
 ! to target_A * numEnsembles * num_runs_SameEnergy
 &input
-	numEnsembles=3000              ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory,
-	eventtype=5                     ! 5=neutrino, 200=simple transport of a given particle
-	numTimeSteps=200               ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
-	                                ! numTimeSteps= 0 for inclusive cross sections
-					! default was 150
-  delta_T=0.2
-	fullensemble=.false.
-	localEnsemble=.false.
-	num_runs_SameEnergy=1       ! increase these if you want to increase statistics (= number of generated events)
-	num_Energies=1                  ! for nuXsectionMode=6 or 16 keep this 1, for other nuXsectionMode this is the number of the running Q2/Elepton/cosTheta variables, respectively
-	printParticleVectors=.true.
-	freezeRealParticles=.true.
-	LRF_equals_CALC_frame=.true.          !if .false.: no offshelltransport possible
-	path_to_input='/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/buuinput'  ! for local run cluster
+      numEnsembles=2000         ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory,
+      eventtype=5               ! 5=neutrino, 200=simple transport of a given particle
+      numTimeSteps=0            ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
+	                              ! if numTimeSteps=0 then only inclusive X-sections are calculated
+      delta_T=0.2
+      fullensemble=.true.
+      localEnsemble=.true.
+      num_runs_SameEnergy=1     ! increase these if you want to increase statistics (= number of generated events)
+      num_Energies=1            ! for nuXsectionMode=6 or 16 keep this 1, for other nuXsectionMode this is the number of the running Q2/Elepton/cosTheta variables, respectively
+      printParticleVectors=.false.
+      freezeRealParticles=.true.
+      LRF_equals_CALC_frame=.true. !if .false.: no offshelltransport possible
+      path_to_input='/uboone/app/users/apapadop/BuildEventGenerators/GiBUU2023/buuinput'
 /
+
+! file: code/init/neutrino/neutrinoParms.f90
+&nl_neweN
+      new_eN = T
+!      new_eNres = F             ! F for neutrinos, T for electrons
+
+      T = 1
+      ME_ODW = 2
+/
+
+file: code/init/neutrino/neutrinoXsection.f90
+&nl_neutrinoxsection
+      singlePiModel=2           ! 0 for HNV, 1 for MAID, 2 for Bosted-Christie
+    invariantMasscut=100.     ! cut events with invariant mass above
+      DIScutW=3.0               ! DIS sets in at this mass (in GeV)
+      DIScutwidth=0.1
+/
+
+
+! SPECFIC NEUTRINO FLAGS depending on nuXsectionMode
+! file: (for all of them) code/init/neutrino/neutrinoXsection.f90
+! relevant for nuXsectionMode=6 and (except parameter enu) 16
+&nl_SigmaMC
+      MC_xmax=2.0 ! to get QE peak in nuclei, where Bjorken_x can be larger than 1
+      enu=1.0
+/
+
 
 
 !******************************************************************************
 ! Model ingredients
 !******************************************************************************
+
 ! file: code/init/lowElectron/lepton2p2h.f90
-
-
 &lepton2p2h
-      ME_Version=4            ! This is the Christy model for electrons
+      ME_Version=6              !
 /
 
+
+! file: code/init/neutrino/matrixelement.f90
+&neutrino_matrixelement
+      which_resonanceModel=0    !0=QE + matrixelements from MAID, 1=QE matrixelements + old Delta, 2=Rein-Sehgal
+/
+
+
+! file: code/init/lepton/formfactors_QE_nucleon/FF_QE_nucleonScattering.f90
+&ff_QE
+      parametrization=3         ! 1=BBA03, 2=BBBA05, 3=BBBA07
+      useNonStandardMA=.false.  ! if true, use value of MA_in for axial mass MA, if false, use best fit
+!     MA_in=1.0
+/
 
 !******************************************************************************
 ! form factors for resonance production
 !******************************************************************************
 ! file: code/init/lepton/formfactors_ResProd/formFactor_ResProd.f90
 &input_FF_ResProd
-  FF_ResProd=0                    ! 0=MAID in CM-frame, 1=fit of Lalakulich ,2=MAID in LAB-frame
-  MA=1.00                         ! axial mass in the Delta resonance form factors based on ANL=0.95  or BNL=1.3, default was 0.95
+      FF_ResProd=0              ! 0=MAID in CM-frame, 1=fit of Lalakulich ,2=MAID in LAB-frame
+      MA = 1.05                 ! axial mass in the Delta resonance form factors based on ANL=0.95  or BNL=1.3(default)
+      aDelta = 0.
+      bDelta = 0.0
+      C5A0corr = 0.85
 /
 
 !******************************************************************************
@@ -150,39 +223,11 @@
 !******************************************************************************
 ! file: code/init/neutrino/singlePionProductionMAIDlike.f90
 &neutrino_MAIDlikeBG
-  b_proton_pinull=3.0            ! parameters for 1-pion background  ANL=3 (default)      BNL=6
-  b_neutron_piplus=1.5          !                                   ANL=1.5 (default)    BNL=3.0
+!  b_proton_pinull=6.0            ! parameters for 1-pion background  ANL=3 (default)      BNL=6
+!  b_neutron_piplus=3.0           !                                   ANL=1.5 (default)    BNL=3.0
 /
 
 
-! file: code/init/neutrino/neutrinoXsection.f90
-&nl_neutrinoxsection
-	!singlePiModel=1                 ! 0 for HNV, 1 for MAID
-
-  !   the following parameters determine the transition from resonance to DIS excitations, determined by
-  !   the invariant mass W,  see "Lalakulich Gallmeister Mosel PRC86(2012)014607" for details
-      !REScutW1=1.9
-      !REScutW2=2.0
-      !DIScutW1=1.55
-      !DIScutW2=1.65
-
-  invariantMasscut=20.           ! mass cuts on Wrec
-  invariantMassCut_BG = 20.      ! mass cuts on Wrec
-/
-
-! SPECFIC NEUTRINO FLAGS depending on nuXsectionMode
-! file: (for all of them) code/init/neutrino/neutrinoXsection.f90
-! relevant for nuXsectionMode=6 and (except parameter enu) 16
-&nl_SigmaMC
-    MC_xmax=2.0		! to get QE peak in nuclei, where Bjorken_x larger than 1
-    enu=1.0
-/
-
-! file: code/init/lepton/matrixElementQE.f90	! added
-&MatrixElementQE				! added
-      useCorrelations=.false.			! RPA on (added)
-      nievesCorr_para=2				! Nieves RPA corrections (added)
-/						! added
 
 !##############################################################################
 !analysis flags
@@ -195,34 +240,27 @@
 
 ! file: code/init/neutrino/expNeutrinofluxes.f90
 &MiniBooNE_energyFlux           !
-    Eb=0.030                       ! which binding energy to use in the muon-kinematics-based formular for neutrino energy reconstruction for "0-pion" events
+      Eb=0.030                  ! which binding energy to use in the muon-kinematics-based formular for neutrino energy reconstruction for "0-pion" events
 /
 
 ! file: code/analysis/neutrinoAnalysis.f90
 &neutrinoAnalysis
-	radialScale=0
-	detailed_diff_output=.true.     ! differential xsec; see namelist detailed_diff for max values and bins of the histograms
-	kineticEnergyDetectionThreshold_nucleon=0.
-	kineticEnergyDetectionThreshold_chargedpion=0.
-	kineticEnergyDetectionThreshold_neutralpion=0.
-	calorimetric_analysis=.false.        ! calorimetric reconstruction of energy; see namelist nl_calorimetric_analysis
-	ZeroPion_analysis=.true.            ! extra cross sections  for events with 0 pions in the final state
-	reconstruct_neutrino_energy=.true.  ! calculate neutrino energy reconstruction for varios final states (see nl_specificEvent)
-	specificEvent_analysis=.true.       ! extra cross sections for specific final states; see namelist nl_specificEvent
-										                  ! also provides Q2 and energy reconstruction
-	!inclusiveAnalysis=.false.            !if .true. we don't care whether particles have made it out
-	outputEvents=.false.                   ! output list of events and all outgoing particles in each event to the file FinalEvents.dat
-!  AngleUpperDetectionThresholdDegrees_lepton = 0.0    ! outgoing lepton acceptance cut
-!  kineticEnergyDetectionThreshold_lepton=0.0                 ! outgoing lepton acceptance cut
 
-  include_W_dist=.true.               !printout of W-distributions for outgoing channel
+      detailed_diff_output=.false. ! differential xsec; see namelist detailed_diff for max values and bins of the histograms
+      kineticEnergyDetectionThreshold_nucleon=0.
+      kineticEnergyDetectionThreshold_chargedpion=0.
+      kineticEnergyDetectionThreshold_neutralpion=0.
+      kineticEnergyDetectionThreshold_lepton=0.0
+      calorimetric_analysis=.false. ! calorimetric reconstruction of energy; see namelist nl_calorimetric_analysis
+      ZeroPion_analysis=.true.  ! extra cross sections  for events with 0 pions in the final state
+      reconstruct_neutrino_energy=.false. ! calculate neutrino energy reconstruction for varios final states (see nl_specificEvent)
+      specificEvent_analysis=.false. ! extra cross sections for specific final states; see namelist nl_specificEvent
+! also provides Q2 and energy reconstruction
+      Xsection_analysis = .true.
+      DoOutChannels = .true.
+      outputEvents=.false.      ! output list of events and all outgoing particles in each event to the file FinalEvents.dat
 /
 
-
-&W_distributions
-  dW_Npi=0.02
-  Wmax_Npi=2.0
-/
 
 ! file: code/analysis/EventOutputAnalysis.f90
 &EventOutput
@@ -231,87 +269,80 @@
      EventFormat=4 ! 1=LesHouches(default), 2=Oscar, 3=Shanghai, 4=ROOT
 /
 
+! file code/init/neutrino/initneutrino.f90
+! determines only the binning in dd X-sections
+&lepton_bin
+      Elept_min = 0.
+      Elept_max = 2.0
+      delta_Elept = 0.05
+      cost_min = -1.
+      cost_max = 1.
+      delta_cost = 0.05         ! lepton cos(theta) binning width
+/
+
 
 ! file: code/analysis/neutrinoAnalysis.f90
 &nl_calorimetric_analysis
-	numax=30
-	nubin=0.02
-	Enumax=30
-	enubin=0.05
+      numax=30
+      nubin=0.02
+      Enumax=30
+      enubin=0.05
 /
 
 ! file: code/analysis/neutrinoAnalysis.f90
-
-$nl_specificEvent
-!     any .true. in this namelist must be combined with
-!     specificEvent_analysis=.true. in &neutrinoAnalysis
-
-!     cross sections for various event types
-!     Example: set no_pi to .true. if you want to produce one-diff xsec versus lepton
-!     variables (Ekin, Q2, costheta) for "no pions in the final state" events
-
-      no_pi         = T         ! specificEvent=1
-      p_Xn_no_pi    = T         ! specificEvent=2
-      piplus        = T         ! specificEvent=3
-      piplus_MULTI  = T         ! specificEvent=4
-      pi0           = T         ! specificEvent=5
-      pi0_MULTI     = T         ! specificEvent=6
-      piminus       = T         ! specificEvent=7
-      piminus_MULTI = T         ! specificEvent=8
-      pp_no_pi      = T         ! specificEvent=9
-      pn_no_pi      = T         ! specificEvent=8
-      nn_no_pi      = T         ! specificEvent=11
-      pp_Xn_no_pi   = F         ! specificEvent=12
-      nn_Xp_no_pi   = F         ! specificEvent=13
-      ppp_Xn_no_pi  = F         ! specificEvent=14
-      pppp_Xn_no_pi = F         ! specificEvent=15
-      p_no_pi       = T         ! specificEvent=16
-      n_no_pi       = T         ! specificEvent=17
-      Xn_no_pi      = T         ! specificEvent=18
-
-      full_incl     = T         ! specificEvent=22
-
-
+! event types listed in AnaEvent, line 3700 ff
+$nl_specificEvent          ! any .true. in this namelist must be combines with specificEvent_analysis=.true. in &neutrinoAnalysis
+      no_pi=.true.              ! specificEvent=1   set to .true. if you want produce e.g. one-diff xsec versus lepton varaibles (Ekin, Q2, costheta)
+			               !		     	   for "no pions in the final state" events
+      p_Xn_no_pi=.true.         ! specificEvent=2
+      piplus=.true.             ! specificEvent=3
+      piplusMULTI=.true.        ! specificEvent=4
+      pi0=.true.                ! specificEvent=5
+      pi0_MULTI=.true.          ! specificEvent=6
+      piminus=.true.            ! specificEvent=7
+      piminus_MULTI=.true.      ! specificEvent=8
+      pp_no_pi=.false.          ! specificEvent=9
+      pn_no_pi=.false.          ! specificEvent=10
+      nn_no_pi=.false.          ! specificEvent=11
+      pp_Xn_no_pi=.false.       ! specificEvent=12
+      nn_Xp_no_pi=.false.       ! specificEvent=13
+      ppp_Xn_no_pi=.false.      ! specificEvent=14
+      pppp_Xn_no_pi=.false.     ! specificEvent=15
+      p_no_pi=.false.           ! specificEvent=16
+      n_no_pi=.false.           ! specificEvent=17
+      Xn_no_pi=.false.          ! specificEvent=18
+      excl_pi0=.true.           ! specificEvent=19
+      excl_piplus=.true.        ! specificEvent=20
+      excl_piminus=.true.       ! specificEvent=21
+      full_incl=.true.          ! specificEvent=22
 !
 !  binning for reconstruction of Q2 and Enu
 !
-  binsizeQ2=0.01      ! 0.01
-  binsizeEnu=0.05     ! 0.02
-  maxQ2=3.0           ! 5.0
-  maxEnu=10.0				  ! 5.0
+      binsizeQ2=0.01            ! 0.01
+      binsizeEnu=0.05           ! 0.02
+      maxQ2=5.0                 ! 5.0
+      maxEnu=8.0                ! 5.0
 /
 
 
 ! file: code/analysis/neutrinoAnalysis.f90
 &detailed_diff
-	ekinMax=3.0         ! maximum value of Ekin in the output of distribution of hadrons versus kinetic energy
-	dEkin=0.02          ! binning of Ekin in the output versus kinetic energy
-	fornucleon=.true.   ! produce output versus kinetic energy, angle, ... for this outgoing hadron
-	forpion=.true.      ! to the files diff_....
-	foreta=.true.
-	forkaon=.true.
-	forkaonBar=.true.
-	forLambda=.true.
-	forSigmaResonance=.false.
+      ekinMax=5.0               ! maximum value of Ekin in the output of distribution of hadrons versus kinetic energy
+      dEkin=0.02                ! binning of Ekin in the output versus kinetic energy
+      fornucleon=.true.         ! produce output versus kinetic energy, angle, ... for this outgoing hadron
+      forpion=.true.            ! to the files diff_....
+      foreta=.true.
+      forkaon=.true.
+      forkaonBar=.true.
+      forLambda=.true.
+      forSigmaResonance=.false.
 /
 
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! file: code/init/neutrino/matrixelement.f90
-&neutrino_matrixelement
-    which_resonanceModel=2          !0=QE + matrixelements from MAID,
-                                    !1=QE matrixelements + old Delta,
-                                    !2=Rein-Sehgal
-/				                                       ! I changed it to Rein-Sehgal
 
 
-! file: code/init/lepton/formfactors_QE_nucleon/FF_QE_nucleonScattering.f90
-&ff_QE
-	parametrization=2               ! 1=BBA03, 2=BBBA05, 3=BBBA07
-	useNonStandardMA=.true.        ! if true, use value of MA_in for axial mass MA, if false, use best fit
-   MA_in=1.0
-/
 
 
 
@@ -321,21 +352,17 @@ $nl_specificEvent
 
 ! file: code/width/baryonWidthMedium.f90
 &width_Baryon
-    mediumSwitch=.false.               ! if .false. vacuum widths will be used for all resonances
-                                      ! and other switches are not meaningful/relevant
-    mediumSwitch_Delta=.false.         ! Use Oset broadening of the Delta (only relevant for mediumSwitch_coll=.false.)
-    mediumSwitch_coll=.false.         ! Use collisional broadening of all resonances
+      mediumSwitch=.true.       ! if .false. vacuum widths will be used for all resonances
+                                ! and other switches are not meaningful/relevant
+      mediumSwitch_Delta=.true. ! Use Oset broadening of the Delta (only relevant for mediumSwitch_coll=.false.)
+      mediumSwitch_coll=.false. ! Use collisional broadening of all resonances
 /
 
-!&barBar_BarBar                        ! suppresses Delta excitation NN -> Delta N
-                                      ! with density, foll. Song & Ko
-!  deltaN_densityDependence = F
-!/
 
 ! file: code/spectralFunctions/spectralFunc.f90
 &spectralFunction
-   nuclwidth=0.001                 ! if mediumSwitch_coll=.false.: this parameter determines the "bare nucleon width", for numerical purpose
-   relativistic=.true.             ! if mediumSwitch_coll=.false.: relativistic or non-rel. spectral function
+      nuclwidth=0.001           ! if mediumSwitch_coll=.false.: this parameter determines the "bare nucleon width", for numerical purpose
+      relativistic=.true.       ! if mediumSwitch_coll=.false.: relativistic or non-rel. spectral function
 /
 
 
@@ -344,14 +371,14 @@ $nl_specificEvent
 !##############################################################################
 ! file: code/propagation/propagation.f90
 &propagation
-	RungeKuttaOrder=2                ! 1=first order Range-Kutta, 2=second order Range-Kutta
+      RungeKuttaOrder=2         ! 1=first order Range-Kutta, 2=second order Runge-Kutta
 /
 
 
 ! file: code/width/offShellPotential.f90
 &offShellPotential
-	useOffShellPotentialBaryons=.false.     ! if inMediumSwitch=.false. also useOffShellpotential will be set to .false.
-	extrapolateBaryonWidth=.false.          ! whether to extrapolate the baryon width below minimal mass
+      useOffShellPotentialBaryons=.false. ! if inMediumSwitch=.false. also useOffShellpotential will be set to .false.
+      extrapolateBaryonWidth=.false. ! whether to extrapolate the baryon width below minimal mass
 /
 
 
@@ -360,15 +387,15 @@ $nl_specificEvent
 !##############################################################################
 ! file: code/potential/baryonPotential.f90
 &baryonPotential
-	EQS_Type=5                      ! 1=soft mom-dep, 2=hard mom-dep, 3=soft non-mom-dep, 4=hard non-mom-dep, 5=medium mom-dep
-	DeltaPot=1                      ! 1=2/3 of nucleon potential, 2=100 MeV*rho/rhoNull
-	symmetryPotFlag=0        ! Switch for the assymetry term in the nucleon potential
+      EQS_Type=5                ! 1=soft mom-dep, 2=hard mom-dep, 3=soft non-mom-dep, 4=hard non-mom-dep, 5=medium mom-dep
+      DeltaPot=1                ! 1=2/3 of nucleon potential, 2=100 MeV*rho/rhoNull
+      symmetryPotFlag=0         ! Switch for the assymetry term in the nucleon potential
 /
 
 
 ! file: code/potential/coulomb/coulomb.f90
 &Coulomb
-    CoulombFlag=.false.
+      CoulombFlag=.false.
 /
 
 
@@ -378,43 +405,48 @@ $nl_specificEvent
 
 ! file: code/collisions/collisionTerm.f90
 &collisionTerm
-	oneBodyProcesses=.true.
-	twoBodyProcesses=.true.
-	threeBodyProcesses=.true.
-	DoJustAbsorptive=.false.
+      oneBodyProcesses=.true.
+      twoBodyProcesses=.true.
+      threeBodyProcesses=.true.
+      DoJustAbsorptive=.false.
 /
 
 
 ! file: code/collisions/twoBodyReactions/hadronFormation.f90
 !&hadronFormation
-!   useJetSetVec=.false.  ! use .false. to switch to old JETSET model for hadron formation
-!   tauForma=0.01         ! only valid for useJetSetVec=.false. ,   the value 0.01 is equivalent to 0, default is 0.8
+!     useJetSetVec=.false.  ! use .false. to switch to old JETSET model for hadron formation
+!     tauForma=0.01         ! only valid for useJetSetVec=.false. ,   the value 0.01 is equivalent to 0, default is 0.8
 !/
 
 
 ! file: code/collisions/twoBodyReactions/master_2Body.f90
-!&master_2Body
-!	baryonBaryonScattering=.true.
-!	baryonMesonScattering=.true.
-!	mesonMesonScattering=.true.
-!  NN_inmed=.true.
-!/
+&master_2Body
+      baryonBaryonScattering=.true.
+      baryonMesonScattering=.true.
+      mesonMesonScattering=.false.
+!     NN_inmed=.true.
+/
 
 
 ! file: code/collisions/twoBodyReactions/baryonMeson/resonanceCrossSections.f90
 &resonanceCrossSections
-	fullPropagator=.false.          ! Use self energies in resonance propagators (only when collisional broadening is switched on)
+      fullPropagator=.false.    ! Use self energies in resonance propagators (only when collisional broadening is switched on)
 /
 
 
 
 ! file: code/collisions/insertion.f90
 &insertion
-    minimumEnergy=0.005  ! default is 0.005 GeV
+      minimumEnergy=0.005
 /
 
 
 ! file: code/collisions/twoBodyReactions/HiEnergy/DoCollTools.f90
 &pythia
-   PARP(91)=0.44
+      PARP(91)=0.44
+/
+
+! file: code/numerics/random.f90
+&initRandom
+      Seed = 45678              ! seed for the random number
 /
