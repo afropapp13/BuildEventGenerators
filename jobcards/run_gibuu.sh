@@ -18,6 +18,7 @@ for i in {1..50}; do nuisflat -i GiBUU:GiBUU_${i}.prep.root -o samples/GiBUU_${i
 cd samples
 hadd GiBUU2023.flat.root GiBUU*.flat.root
 mv GiBUU2023.flat.root /pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2023/GiBUU2023.root
+rm *.root
 cd ..
 
 # Remove unnecessary files
