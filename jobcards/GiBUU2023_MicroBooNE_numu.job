@@ -146,7 +146,7 @@
       delta_T=0.2
       fullensemble=.false.
       localEnsemble=.false.
-      num_runs_SameEnergy=50     ! increase these if you want to increase statistics (= number of generated events)
+      num_runs_SameEnergy=300     ! increase these if you want to increase statistics (= number of generated events)
       num_Energies=1            ! for nuXsectionMode=6 or 16 keep this 1, for other nuXsectionMode this is the number of the running Q2/Elepton/cosTheta variables, respectively
       printParticleVectors=.true.
       freezeRealParticles=.true.
