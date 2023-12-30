@@ -91,7 +91,7 @@
                              ! 1st col: energy, 2nd col: flux,
                              ! energies must be linear and equidistant
                              ! name of the flux file is given in the next line: 
-!       FileNameFlux = '/afs/cern.ch/work/u/umosel/GiBUU/buuinput/neutrino/MINERvA_MEflux.dat'
+       FileNameFlux = '/afs/cern.ch/work/u/umosel/GiBUU/buuinput/neutrino/MINERvA_MEflux.dat'
                              ! for nuExp=99
                              ! this is an example for the MINERvA medium energy
                              ! flux, but any other flux could be inserted here
@@ -114,8 +114,9 @@
 &target
       target_Z=18
       target_A=40
-      densitySwitch_Static=2    ! 0: density=0.0, 1: Wood-Saxon by Lenske, 2 : NPA 554, 3: Wood-Saxon by Lenske, different neutron and proton radii,
-				! 5: density distribution is a sphere with density according to the input value of "fermiMomentum_input".
+      densitySwitch_Static=1    ! 0: density=0.0, 1: Wood-Saxon by Lenske, 2 : NPA 554, 3: Wood-Saxon by Lenske, different neutron and proton radii,
+					! 5: density distribution is a sphere with density according to the input value of "fermiMomentum_input".
+      fermiMomentum_input=0.225 ! Input value of the fermi momentum for densitySwitch_static=5.
       fermiMotion=.true.
       ReAdjustForConstBinding=.true.
 !     ConstBinding=-0.008             ! only valid for ReAdjustForConstBinding=true
@@ -139,24 +140,25 @@
 ! the number of generated events is proportional (but not equal, because some "events" can be in prohibited phase space)
 ! to target_A * numEnsembles * num_runs_SameEnergy
 &input
-      numEnsembles=3000         ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory,
+      numEnsembles=2000         ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory,
       eventtype=5               ! 5=neutrino, 200=simple transport of a given particle
       numTimeSteps=200            ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
 	                              ! if numTimeSteps=0 then only inclusive X-sections are calculated
       delta_T=0.2
-      fullensemble=.false.
-      localEnsemble=.false.
-      num_runs_SameEnergy=300     ! increase these if you want to increase statistics (= number of generated events)
+      fullensemble=.true.
+      localEnsemble=.true.
+      num_runs_SameEnergy=500     ! increase these if you want to increase statistics (= number of generated events)
       num_Energies=1            ! for nuXsectionMode=6 or 16 keep this 1, for other nuXsectionMode this is the number of the running Q2/Elepton/cosTheta variables, respectively
-      printParticleVectors=.true.
+      printParticleVectors=.false.
       freezeRealParticles=.true.
       LRF_equals_CALC_frame=.true. !if .false.: no offshelltransport possible
       path_to_input='/uboone/app/users/apapadop/BuildEventGenerators/GiBUU2023/buuinput'
+      version=2023
 /
 
 ! file: code/init/neutrino/neutrinoParms.f90
 &nl_neweN
-      new_eN = T
+!      new_eN = T
 !      new_eNres = F             ! F for neutrinos, T for electrons
 
       T = 1
@@ -245,7 +247,7 @@ file: code/init/neutrino/neutrinoXsection.f90
 ! file: code/analysis/neutrinoAnalysis.f90
 &neutrinoAnalysis
 
-      detailed_diff_output=.false. ! differential xsec; see namelist detailed_diff for max values and bins of the histograms
+      detailed_diff_output=.true. ! differential xsec; see namelist detailed_diff for max values and bins of the histograms
       kineticEnergyDetectionThreshold_nucleon=0.
       kineticEnergyDetectionThreshold_chargedpion=0.
       kineticEnergyDetectionThreshold_neutralpion=0.
@@ -263,7 +265,6 @@ file: code/init/neutrino/neutrinoXsection.f90
 
 ! file: code/analysis/EventOutputAnalysis.f90
 &EventOutput
-     WriteRealParticles = F  ! if you want that output
      WritePerturbativeParticles = T  ! if you want that output
      EventFormat=4 ! 1=LesHouches(default), 2=Oscar, 3=Shanghai, 4=ROOT
 /
@@ -447,5 +448,5 @@ $nl_specificEvent          ! any .true. in this namelist must be combines with s
 
 ! file: code/numerics/random.f90
 &initRandom
-!      Seed = 45678              ! seed for the random number
+      Seed = 45678              ! seed for the random number
 /
