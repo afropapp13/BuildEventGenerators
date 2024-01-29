@@ -3,8 +3,6 @@
 # Generate GiBUU events
 # GiBUU 2023
 /uboone/app/users/apapadop/BuildEventGenerators/GiBUU2023/release/testRun/./GiBUU.x < GiBUU2023_MicroBooNE_numu.job
-# GiBUU 2021
-#/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/release/testRun/./GiBUU.x < GiBUU_MicroBooNE_numu.job
 
 # Convert to Nuisance format
 for i in {1..9}; do PrepareGiBUU -i EventOutput.Pert.0000000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
