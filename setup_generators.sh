@@ -4,7 +4,7 @@ BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 source ${BASE_DIR}/global_vars.sh
 
 # NEUT
-export NEUTROOT=${BASE_DIR}/neut
+export NEUTROOT=/uboone/app/users/apapadop/BuildEventGenerators/neut
 source ${NEUTROOT}/neutbuild/cernlib/setup_cernlib.sh
 export LD_LIBRARY_PATH=${NEUTROOT}/src/reweight:${LD_LIBRARY_PATH}
 source ${NEUTROOT}/build/Linux/setup.sh
@@ -23,10 +23,7 @@ export LIBRARY_PATH=${LIBRARY_PATH}:${GENIE_REWEIGHT}/lib
 
 # Set up GiBUU (run via the "gibuu" symbolic link to GiBUU.x)
 # GiBUU 2023
-export PATH=${PATH}:${BASE_DIR}/GiBUU2023/release/testRun
-# GiBUU 2021
-#export PATH=${PATH}:${BASE_DIR}/GiBUU/release/testRun
-#echo "GiBUU setup is ready!"
+export PATH=${PATH}:${BASE_DIR}/GiBUU/release/testRun
 
 # NuWro
 export PYTHIA6=$PYTHIA6_LIBRARY
@@ -36,8 +33,8 @@ export PATH=$NUWRO/bin:$PATH
 #echo "NuWro setup is ready!"
 
 # MARLEY
-export MARLEYROOT=${BASE_DIR}/marley
-source ${MARLEYROOT}/setup_marley.sh
+#export MARLEYROOT=${BASE_DIR}/marley
+#source ${MARLEYROOT}/setup_marley.sh
 #echo "MARLEY setup is ready!"
 
 # NUISANCE

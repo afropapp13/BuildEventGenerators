@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export events="1000"
+export events="10"
 export version="v3_4_0"
 export tune="G18_10a_02_11a"
 export probe="14"

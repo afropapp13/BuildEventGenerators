@@ -29,7 +29,7 @@ NEUT-NUMATOM 40
 C Generate in all modes
 NEUT-MODE 0
 
-NEUT-CRSPATH='../neut/src/crsdat'
+NEUT-CRSPATH='/uboone/app/users/apapadop/BuildEventGenerators/neut/src/crsdat'
 NEUT-RAND 1
 C Want NEUT to be quiet
 NEUT-QUIET 2
