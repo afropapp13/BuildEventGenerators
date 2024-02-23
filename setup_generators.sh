@@ -4,7 +4,7 @@ BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 source ${BASE_DIR}/global_vars.sh
 
 # NEUT
-export NEUTROOT=/uboone/app/users/apapadop/BuildEventGenerators/neut
+export NEUTROOT=/exp/uboone/app/users/apapadop/BuildEventGenerators/neut
 source ${NEUTROOT}/neutbuild/cernlib/setup_cernlib.sh
 export LD_LIBRARY_PATH=${NEUTROOT}/src/reweight:${LD_LIBRARY_PATH}
 source ${NEUTROOT}/build/Linux/setup.sh
