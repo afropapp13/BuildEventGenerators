@@ -2,7 +2,7 @@
 
 # Generate GiBUU events
 # GiBUU 2023
-/uboone/app/users/apapadop/BuildEventGenerators/GiBUU2023/release/testRun/./GiBUU.x < GiBUU2023_MicroBooNE_numu.job
+/exp/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/release/testRun/./GiBUU.x < GiBUU2023_MicroBooNE_numu.job
 
 # Convert to Nuisance format
 for i in {1..9}; do PrepareGiBUU -i EventOutput.Pert.0000000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
@@ -28,4 +28,4 @@ rm GiBUU_database.tex
 rm main.run
 rm PYR.RG
 #rm EventOutput.Pert.000000*.root
-mv GiBUU.prep.root samples/
+#mv GiBUU.prep.root samples/

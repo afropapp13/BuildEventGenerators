@@ -152,7 +152,7 @@
       printParticleVectors=.false.
       freezeRealParticles=.true.
       LRF_equals_CALC_frame=.true. !if .false.: no offshelltransport possible
-      path_to_input='/uboone/app/users/apapadop/BuildEventGenerators/GiBUU2023/buuinput'
+      path_to_input='/exp/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/buuinput'
       version=2023
 /
 

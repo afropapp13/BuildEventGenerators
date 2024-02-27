@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export events="10"
+export events="100"
 export version="v3_4_0"
 export tune="G18_10a_02_11a"
 export probe="14"
@@ -8,7 +8,7 @@ export target="1000180400"
 export interaction="CC"
 export minE="0."
 export maxE="10."
-export fluxfile="/uboone/app/users/apapadop/BuildEventGenerators/jobcards/MCC9_FluxHist_volTPCActive.root"
+export fluxfile="/exp/uboone/app/users/apapadop/BuildEventGenerators/jobcards/MCC9_FluxHist_volTPCActive.root"
 export fluxhisto="hEnumu_cv"
 
 # Produce the GENIE splines
