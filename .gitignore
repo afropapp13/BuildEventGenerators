@@ -1,3 +1,5 @@
+jobcards/run_genie_dune_fd.sh
+jobcards/run_genie_dune_nd.sh
 jobcards/run_genie_ANL_SF.sh
 achilles_nuhepmc3/
 build_genie_v3_4_0_INCL.sh
@@ -37,6 +39,7 @@ neut
 nuwro
 marley
 nuisance
+nusystematics
 nuisance_CC1mu2p
 build_genie_v3_0_6.sh
 build_genie_v3_4_0_RS.sh

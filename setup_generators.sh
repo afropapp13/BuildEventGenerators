@@ -11,7 +11,9 @@ source ${NEUTROOT}/build/Linux/setup.sh
 #echo "NEUT setup is ready!"
 
 # GENIE
+export GENIE_FQ_DIR=${BASE_DIR}
 export GENIE=${BASE_DIR}/Generator
+export GENIE_LIB=${BASE_DIR}/Generator/lib
 export PYTHIA6=${PYTHIA_FQ_DIR}/lib
 export LHAPDF5_INC=${LHAPDF_INC}
 export LHAPDF5_LIB=${LHAPDF_LIB}
@@ -36,6 +38,9 @@ export PATH=$NUWRO/bin:$PATH
 #export MARLEYROOT=${BASE_DIR}/marley
 #source ${MARLEYROOT}/setup_marley.sh
 #echo "MARLEY setup is ready!"
+
+#NuSystematics
+source ${BASE_DIR}/nusystematics/build/Linux/bin/setup.nusystematics.sh
 
 # NUISANCE
 source ${BASE_DIR}/nuisance/build/Linux/setup.sh
