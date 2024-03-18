@@ -1,13 +1,30 @@
 #!/bin/bash
 
+export gpvm=${HOSTNAME}
+export suffix=".fnal.gov"
+export prefix="gpvm"
+export hostgpvm=${gpvm%"$suffix"}
+hostgpvm=$(printf '%s\n' "${hostgpvm//[[:digit:]]/}")
+hostgpvm=${hostgpvm%"$prefix"}
+
 # MicroBooNE
-source /cvmfs/uboone.opensciencegrid.org/products/setup_uboone.sh
+if [[ "${hostgpvm}" == "uboone" ]] 
+then 
+	source /cvmfs/uboone.opensciencegrid.org/products/setup_uboone.sh
+fi
 
 # SBND
-#source /cvmfs/sbnd.opensciencegrid.org/products/sbnd/setup_sbnd.sh
+if [[ "${hostgpvm}" == "sbnd" ]] 
+then 
+	source /cvmfs/sbnd.opensciencegrid.org/products/sbnd/setup_sbnd.sh
+fi
 
 #DUNE
-#source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+if [[ "${hostgpvm}" == "dune" ]] 
+then 
+	source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+fi
+
 
 setup root v6_22_08d -q e20:p392:prof                                               
 setup lhapdf v6_3_0 -q e20:p392:prof                                           
