@@ -50,7 +50,8 @@ beam_particle = 14    // neutrino PDG
 ################################################################
 
 #@target/proton.txt
-@target/C.txt
+@target/Ar.txt
+#@target/C.txt
 #@target/CH.txt
 #@target/ND280_975.txt
 #@target/proton.txt

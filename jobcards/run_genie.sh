@@ -1,8 +1,8 @@
 #!/bin/bash
 
 export events="100"
-export version="v3_4_0"
-export tune="G18_10a_02_11a"
+export version="v3_4_2"
+export tune="AR23_20i_00_000"
 export probe="14"
 export target="1000180400"
 export interaction="CC"
@@ -16,10 +16,10 @@ export outdir="./samples"
 #gmkspl -p ${probe} -t ${target} -e ${maxE} -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.xml --tune ${tune} --event-generator-list ${interaction}
 
 # Convert the xml splines to root format
-gspl2root -f ${probe}_${target}_${interaction}_${version}_${tune}.xml --event-generator-list ${interaction} -p ${probe} -t ${target} -o ${outdir}/{probe}_${target}_${interaction}_${version}_${tune}.xml.root --tune ${tune}
+gspl2root -f ${probe}_${target}_${interaction}_${version}_${tune}.xml --event-generator-list ${interaction} -p ${probe} -t ${target} -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.xml.root --tune ${tune}
 
 # Generate GENIE events
-gevgen -n $events -p ${probe} -t ${target} -e ${minE},${maxE}  --event-generator-list ${interaction} --tune ${tune} --cross-sections ${probe}_${target}_${interaction}_${version}_${tune}.xml -f ${fluxfile},${fluxhisto} -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root
+gevgen -n $events -p ${probe} -t ${target} -e ${minE},${maxE}  --event-generator-list ${interaction} --tune ${tune} --cross-sections ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.xml -f ${fluxfile},${fluxhisto} -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root
 
 # Convert file from ghep to gst
 gntpc -f gst -i ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.ghep.root -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.gst.root --tune ${tune}

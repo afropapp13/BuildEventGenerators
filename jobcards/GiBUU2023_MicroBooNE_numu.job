@@ -147,7 +147,7 @@
       delta_T=0.2
       fullensemble=.true.
       localEnsemble=.true.
-      num_runs_SameEnergy=1     ! increase these if you want to increase statistics (= number of generated events)
+      num_runs_SameEnergy=20     ! increase these if you want to increase statistics (= number of generated events)
       num_Energies=1            ! for nuXsectionMode=6 or 16 keep this 1, for other nuXsectionMode this is the number of the running Q2/Elepton/cosTheta variables, respectively
       printParticleVectors=.false.
       freezeRealParticles=.true.
@@ -449,4 +449,23 @@ $nl_specificEvent          ! any .true. in this namelist must be combines with s
 ! file: code/numerics/random.f90
 &initRandom
       Seed = 45678              ! seed for the random number
+/
+
+&XsectionRatios_input
+
+      flagInMedium = .false.    ! turns on in-medium changes of NN cross sections in deciding to keep an event
+!   switches only relevant if flagInMedium = .true. :
+!      InMediumMode = 1          ! baryon-baryon (+meson) final state phase space is reduced following eqs (194,195) in GiBUU review
+       InMediumMode = 2          ! BB -> BB* is reduced following Song,Ko, PRC91, 014901 (2015), NN elastic reduced according to Machleidt-Li
+/
+
+! file: code/collisions/twoBodyReactions/master_2Body.f90
+&master_2Body
+      doScaleResidue = .true.   ! prevents nucleon knock-out with numbers larger than target mass
+                                ! requires DetermineResidue=.true.
+/
+
+! file: code/analysis/sourceAnalysis/residue.f90
+&residue_Input
+DetermineResidue = .true. ! needed for rescaling NN X-sections
 /

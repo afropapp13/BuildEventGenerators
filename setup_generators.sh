@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export TERM=screen
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 source ${BASE_DIR}/global_vars.sh
 
