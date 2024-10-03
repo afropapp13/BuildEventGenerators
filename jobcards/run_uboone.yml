@@ -1,0 +1,66 @@
+Main:
+  NEvents: 100000
+  HardCuts: false
+  EventCuts: false
+  DoRotate: false
+  Output:
+      Format: HepMC3
+      Name: microboone/SM_nu_unwgt.hepmc
+      Zipped: True
+
+Process:
+  Model: DarkNeutrinoPortal_Dirac_UFO
+  Final States: [13]
+
+Initialize:
+  Seed: 12345678
+  Accuracy: 5e-3
+
+Unweighting:
+  Name: Percentile
+  percentile: 99
+
+Beams:
+  - Beam:
+      PID: 14
+      Beam Params:
+        Type: Spectrum
+        ROOTHist:
+          File: microboone.root
+          HistName: hEnumu_cv
+          UseWidth: true
+          Norm: 6.70087325430129e-18
+
+Cascade:
+  Run: False
+  Interaction:
+    Name: GeantInteractions
+    GeantData: data/GeantData.hdf5
+  Step: 0.04
+  Probability: Cylinder
+  InMedium: None
+  PotentialProp: False
+
+NuclearModel:
+  Model: QESpectral
+  FormFactorFile: "FormFactors.yml"
+  SpectralP: data/pke12_tot.data
+  SpectralN: data/pke12_tot.data
+  Ward: False
+
+Nucleus:
+  Name: 12C
+  Binding: 8.6
+  Fermi Momentum: 225
+  Density:
+    File: data/c12.prova.txt
+    FilePotential: data/realOP_12C_EDAI.dat
+    Function: configuration
+    Config Type: QMC
+  FermiGas: Local
+  Potential: 
+    Name: Schroedinger
+    r0: 0.16
+    Mode: 3
+
+HardCuts:
