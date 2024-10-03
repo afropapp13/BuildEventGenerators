@@ -1,66 +1,113 @@
 Main:
-  NEvents: 100000
-  HardCuts: false
+  NEvents: 50000
+  HardCuts: true
   EventCuts: false
   DoRotate: false
+  RunDecays: False
   Output:
-      Format: HepMC3
-      Name: microboone/SM_nu_unwgt.hepmc
+      Format: NuHepMC
+      Name: achilles.hepmc
       Zipped: True
 
-Process:
-  Model: DarkNeutrinoPortal_Dirac_UFO
-  Final States: [13]
+SherpaOptions: !include "data/default/SherpaOptions.yml"
 
-Initialize:
-  Seed: 12345678
-  Accuracy: 5e-3
-
-Unweighting:
-  Name: Percentile
-  percentile: 99
+Processes:
+  - Leptons: [11, [11]]
 
 Beams:
   - Beam:
-      PID: 14
+      PID: 11
       Beam Params:
-        Type: Spectrum
-        ROOTHist:
-          File: microboone.root
-          HistName: hEnumu_cv
-          UseWidth: true
-          Norm: 6.70087325430129e-18
+        Type: Monochromatic
+        Energy: 1108
 
 Cascade:
   Run: False
-  Interaction:
-    Name: GeantInteractions
-    GeantData: data/GeantData.hdf5
+  Interactions:
+    - Name: GeantInteraction
+      Options:
+        GeantData: data/GeantData.hdf5
+    - Name: PionInteraction
+      Options: 
+        HardScatter: 
+          Name: MesonBaryonInteraction
+          Options:
+        Absorption:
+          Name: PionAbsorptionOneStep
+          Options:
+    - Name: ConstantInteraction
+      Options:
+        InitialStates:
+          - Incoming: [3112, 2112]
+            Outgoing: 
+              - Outgoing: [3112, 2112]
+                CrossSection: 0
+          - Incoming: [3112, 2212]
+            Outgoing: 
+              - Outgoing: [3212, 2112]
+                CrossSection: 0
+          - Incoming: [321, 2212]
+            Outgoing: 
+              - Outgoing: [321, 2212]
+                CrossSection: 0
+          - Incoming: [321, 2112]
+            Outgoing: 
+              - Outgoing: [321, 2112]
+                CrossSection: 0
+          - Incoming: [3122, 2212]
+            Outgoing: 
+              - Outgoing: [3122, 2212]
+                CrossSection: 0
+          - Incoming: [3122, 2112]
+            Outgoing: 
+              - Outgoing: [3122, 2112]
+                CrossSection: 0
+          - Incoming: [3212, 2212]
+            Outgoing: 
+              - Outgoing: [3212, 2212]
+                CrossSection: 0
+          - Incoming: [3212, 2112]
+            Outgoing: 
+              - Outgoing: [3212, 2112]
+                CrossSection: 0
+          - Incoming: [3222, 2112]
+            Outgoing: 
+              - Outgoing: [3222, 2112]
+                CrossSection: 0
+          - Incoming: [3222, 2212]
+            Outgoing: 
+              - Outgoing: [3222, 2212]
+                CrossSection: 0
+          - Incoming: [311, 2112]
+            Outgoing: 
+              - Outgoing: [311, 2112]
+                CrossSection: 0
+          - Incoming: [311, 2212]
+            Outgoing: 
+              - Outgoing: [311, 2212]
+                CrossSection: 0
   Step: 0.04
-  Probability: Cylinder
+  Probability: Gaussian
   InMedium: None
   PotentialProp: False
+  Algorithm: Base
 
-NuclearModel:
-  Model: QESpectral
-  FormFactorFile: "FormFactors.yml"
-  SpectralP: data/pke12_tot.data
-  SpectralN: data/pke12_tot.data
-  Ward: False
+NuclearModels:
+  - NuclearModel: !include "data/default/QEOptions.yml"
+  #- NuclearModel: !include "data/default/IntfOptionsF.yml"
+  #- NuclearModel: !include "data/default/RESOptionsF.yml"
+  #- NuclearModel: !include "data/default/HyperonOptions.yml"
 
-Nucleus:
-  Name: 12C
-  Binding: 8.6
-  Fermi Momentum: 225
-  Density:
-    File: data/c12.prova.txt
-    FilePotential: data/realOP_12C_EDAI.dat
-    Function: configuration
-    Config Type: QMC
-  FermiGas: Local
-  Potential: 
-    Name: Schroedinger
-    r0: 0.16
-    Mode: 3
+Nuclei:
+  - Nucleus: !include "data/default/12C.yml"
 
 HardCuts:
+  - Type: AngleTheta
+    PIDs: 11
+    range: [36.5, 38.5]
+
+Options: !include "data/default/OptionDefaults.yml"
+
+Backend:
+  Name: Default
+  Options: []
