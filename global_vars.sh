@@ -37,3 +37,4 @@ setup boost v1_80_0 -q e20:prof
 setup tbb v2021_7_0 -q e20
 setup sqlite v3_39_02_00
 setup pythia v6_4_28r -q gcc930:prof
+setup hepmc3 v3_2_7 -q e26:p3915:prof

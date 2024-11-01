@@ -11,6 +11,8 @@
 ./build_nuwro.sh
 #./build_marley.sh
 
+./build_achilles.sh
+
 ./build_nusyst.sh
 
 ./build_nuisance.sh
