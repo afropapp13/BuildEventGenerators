@@ -10,7 +10,7 @@ hostgpvm=${hostgpvm%"$prefix"}
 # MicroBooNE
 if [[ "${hostgpvm}" == "uboone" ]] 
 then 
-	source /cvmfs/uboone.opensciencegrid.org/products/setup_uboone.sh
+	source /cvmfs/uboone.opensciencegrid.org/products/setup_uboone_mcc9.sh
 fi
 
 # SBND
@@ -25,16 +25,18 @@ then
 	source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
 fi
 
-
-setup root v6_22_08d -q e20:p392:prof                                               
-setup lhapdf v6_3_0 -q e20:p392:prof                                           
-setup log4cpp v1_1_3c -q e20:prof                                            
+setup root v6_28_12 -q e26:p3915:prof                      
+setup lhapdf v6_5_4 -q e26:p3915:prof                                           
+setup log4cpp v1_1_3e -q e26:prof                                            
 setup pdfsets v5_9_1b                                                           
-setup gdb v8_1                                                                  
-setup git v2_40_1                                                                       
+setup gdb v13_1 
+setup git v2_45_1                                                                       
 setup cmake v3_27_4
-setup boost v1_80_0 -q e20:prof
-setup tbb v2021_7_0 -q e20
-setup sqlite v3_39_02_00
-setup pythia v6_4_28r -q gcc930:prof
+setup boost v1_82_0 -q e20:prof
+setup tbb v2021_9_0 -q e26
+setup sqlite v3_40_01_00
+setup pythia v6_4_28x -q e26:prof
 setup hepmc3 v3_2_7 -q e26:p3915:prof
+setup geant4 v4_11_2_p02 -q e26:prof
+setup inclxx v5_2_9_5f -q e26:prof
+setup hdf5 v1_12_2b -q e26:prof
