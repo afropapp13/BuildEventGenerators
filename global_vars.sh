@@ -32,7 +32,7 @@ setup pdfsets v5_9_1b
 setup gdb v13_1 
 setup git v2_45_1                                                                       
 setup cmake v3_27_4
-setup boost v1_82_0 -q e20:prof
+setup boost v1_82_0 -q e26:prof
 setup tbb v2021_9_0 -q e26
 setup sqlite v3_40_01_00
 setup pythia v6_4_28x -q e26:prof

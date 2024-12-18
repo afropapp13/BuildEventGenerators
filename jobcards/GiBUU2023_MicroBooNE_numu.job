@@ -147,12 +147,12 @@
       delta_T=0.2
       fullensemble=.true.
       localEnsemble=.true.
-      num_runs_SameEnergy=20     ! increase these if you want to increase statistics (= number of generated events)
+      num_runs_SameEnergy=1     ! increase these if you want to increase statistics (= number of generated events)
       num_Energies=1            ! for nuXsectionMode=6 or 16 keep this 1, for other nuXsectionMode this is the number of the running Q2/Elepton/cosTheta variables, respectively
       printParticleVectors=.false.
       freezeRealParticles=.true.
       LRF_equals_CALC_frame=.true. !if .false.: no offshelltransport possible
-      path_to_input='/exp/uboone/app/users/apapadop/BuildEventGenerators/GiBUU/buuinput'
+      path_to_input='../GiBUU/buuinput'
       version=2023
 /
 

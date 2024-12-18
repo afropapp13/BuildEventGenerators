@@ -9,7 +9,7 @@ cd neut
 git checkout tags/neut_5.6.0_RC1
 
 # Building all the NEUT dependencies
-git clone https://github.com/afropapp13/neutbuild.git
+git clone https://github.com/luketpickering/neutbuild.git
 cd neutbuild
 ./build_neut.sh ../
 
@@ -22,6 +22,6 @@ export CERN_LEVEL=2005
 cd ..
 mkdir build; cd build;
 ../src/configure --prefix=$(readlink -f Linux)
-make -j 8
+make -j 4
 make install
 source $(pwd)/Linux/setup.sh
