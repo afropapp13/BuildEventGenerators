@@ -1,7 +1,14 @@
 #!/bin/bash                                                                                                                                                                                              
 
-Using a container until neut 6 becomes public
-https://docs.google.com/document/d/1NIrI9BW4Vxw-zYUvec-hsDPSAluAqLuumdj27TG5cic/edit?usp=sharing
+#Using a container until neut 6 becomes public
+#https://docs.google.com/document/d/1NIrI9BW4Vxw-zYUvec-hsDPSAluAqLuumdj27TG5cic/edit?usp=sharing
+
+git clone https://github.com/NUISANCEMC/tutorials.git neut_container
+cd neut_container/interactive
+singularity pull nuisance_nuint2024.sif docker://nuisancemc/tutorial:nuint2024
+wget https://github.com/afropapp13/BuildEventGenerators/raw/master/jobcards/MCC9_FluxHist_volTPCActive.root
+wget https://raw.githubusercontent.com/afropapp13/BuildEventGenerators/refs/heads/master/jobcards/neut_uboone_num.card
+wget https://raw.githubusercontent.com/afropapp13/BuildEventGenerators/refs/heads/master/jobcards/run_neut.sh
 
 #BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 #source ${BASE_DIR}/global_vars.sh         
