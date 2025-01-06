@@ -7,4 +7,4 @@ cd ../achilles/build
 cd -
 mv ../achilles/build/achilles.hepmc ./
 # this line is nort working / complaining about missing libtbb libraries
-#nuisflat -i NuHepMC:achilles.hepmc -o achilles.flat.root  
+nuisflat -i NuHepMC:achilles.hepmc -o achilles.flat.root  

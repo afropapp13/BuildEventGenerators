@@ -9,7 +9,7 @@ Main:
       Name: achilles.hepmc
       Zipped: True
 
-SherpaOptions: !include "data/default/SherpaOptions.yml"
+#SherpaOptions: !include "data/default/SherpaOptions.yml"
 
 Processes:
   - Leptons: [11, [11]]
