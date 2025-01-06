@@ -4,12 +4,13 @@ export TERM=screen
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 source ${BASE_DIR}/global_vars.sh
 
-# NEUT
-export NEUTROOT=/exp/uboone/app/users/apapadop/BuildEventGenerators/neut
-source ${NEUTROOT}/neutbuild/cernlib/setup_cernlib.sh
-export LD_LIBRARY_PATH=${NEUTROOT}/src/reweight:${LD_LIBRARY_PATH}
-source ${NEUTROOT}/build/Linux/setup.sh
-#echo "NEUT setup is ready!"
+# This needs to be added back when we move to neut 6 w/o a container
+## NEUT
+#export NEUTROOT=/exp/uboone/app/users/apapadop/BuildEventGenerators/neut
+#source ${NEUTROOT}/neutbuild/cernlib/setup_cernlib.sh
+#export LD_LIBRARY_PATH=${NEUTROOT}/src/reweight:${LD_LIBRARY_PATH}
+#source ${NEUTROOT}/build/Linux/setup.sh
+##echo "NEUT setup is ready!"
 
 # GENIE
 export GENIE_FQ_DIR=${BASE_DIR}
@@ -25,7 +26,6 @@ export LIBRARY_PATH=${LIBRARY_PATH}:${GENIE_REWEIGHT}/lib
 #echo "GENIE setup is ready!"
 
 # Set up GiBUU (run via the "gibuu" symbolic link to GiBUU.x)
-# GiBUU 2023
 export PATH=${PATH}:${BASE_DIR}/GiBUU/release/testRun
 
 # NuWro

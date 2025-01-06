@@ -1,14 +1,17 @@
 #!/bin/bash                                                                                                                                                                                               
 
-# GENIE v3.4.0
+# GENIE v3.4.2
 ./build_genie.sh
 
-# GiBUU 2023 patch 1
+# GiBUU 2025
 ./build_gibuu.sh
 
-# Private repo, teh code will be using my own neut build
-#./build_neut.sh
+# neut v5.7.0 (container)
+./build_neut.sh
+
+# nuwro 21.09.2 
 ./build_nuwro.sh
+
 #./build_marley.sh
 
 ./build_achilles.sh
