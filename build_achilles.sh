@@ -6,7 +6,8 @@ source ${BASE_DIR}/global_vars.sh
 
 git clone https://github.com/AchillesGen/Achilles achilles
 cd achilles
-#git checkout dev
+git checkout dev
+#git checkout 89-bug-cross-section
 
 mkdir build
 cd build

@@ -8,7 +8,7 @@ export target="1000180400"
 export interaction="CC"
 export minE="0."
 export maxE="10."
-export fluxfile="/exp/uboone/app/users/apapadop/BuildEventGenerators/jobcards/MCC9_FluxHist_volTPCActive.root"
+export fluxfile="./MCC9_FluxHist_volTPCActive.root"
 export fluxhisto="hEnumu_cv"
 export outdir="./samples"
 

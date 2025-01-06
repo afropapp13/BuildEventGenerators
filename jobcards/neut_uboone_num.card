@@ -1,43 +1,21 @@
-C Number of events
-EVCT-NEVT 1000
-C
-C Particle Code (14 = nmu)
+EVCT-NEVT 1000000
 EVCT-IDPT 14
-C Just leave these in for now; it defines direction etc of neutrino
-EVCT-MPOS 2
-EVCT-RAD  100.
+EVCT-MPOS 1
+EVCT-POS  0. 0. 0.
 EVCT-MDIR 1
 EVCT-DIR 0. 0. 1.
 EVCT-MPV 3
-C Name of the root file containing flux
 EVCT-FILENM  'MCC9_FluxHist_volTPCActive.root'
-C Name of the flux histogram inside the root file
 EVCT-HISTNM  'hEnumu_cv'
-C Is the histogram in MeV or GeV; if in MeV set to 1
+
 EVCT-INMEV 0
-C
-C **** TARGET INFORMATION ****
-C 22 Bound neutrons
 NEUT-NUMBNDN 22
-C 18 bound protons
 NEUT-NUMBNDP 18
-C No free protons
-NEUT-NUMFREP 0
-C 18+22=40
+NEUT-NUMFREP 1
 NEUT-NUMATOM 40
-
-C Generate in all modes
-NEUT-MODE 0
-
-NEUT-CRSPATH='/exp/uboone/app/users/apapadop/BuildEventGenerators/neut/src/crsdat'
-NEUT-RAND 1
-C Want NEUT to be quiet
-NEUT-QUIET 2
-
-C Generate with Nieves 2p2h
-NEUT-MDL2P2H 1
-
-C Generate with Nieves 1p1h with LFG, revert to RFG with BBBA05 when not possible
+NEUT-MODE   0
 NEUT-MDLQE 2002
+NEUT-MAQE 1.05
 
-C (If you want spectral function, use NEUT-MDLQE 402)
+## Look for a seed at RANFILE
+NEUT-RAND 0
