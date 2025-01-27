@@ -9,6 +9,7 @@ singularity pull nuisance_nuint2024.sif docker://nuisancemc/tutorial:nuint2024
 wget https://github.com/afropapp13/BuildEventGenerators/raw/master/jobcards/MCC9_FluxHist_volTPCActive.root
 wget https://raw.githubusercontent.com/afropapp13/BuildEventGenerators/refs/heads/master/jobcards/neut_uboone_num.card
 wget https://raw.githubusercontent.com/afropapp13/BuildEventGenerators/refs/heads/master/jobcards/run_neut.sh
+wget https://raw.githubusercontent.com/afropapp13/BuildEventGenerators/refs/heads/master/jobcards/run_neut_container.sh
 
 #BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 #source ${BASE_DIR}/global_vars.sh         
