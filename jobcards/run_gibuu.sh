@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Generate GiBUU events
-../GiBUU/release/testRun/./GiBUU.x < GiBUU2025_MicroBooNE_numu.job
+../GiBUU/release/testRun/./GiBUU.x < GiBUU2025_numu.job
 
 # Convert to Nuisance format
 #for i in {1..9}; do PrepareGiBUU -i EventOutput.Pert.0000000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
 #for i in {10..99}; do PrepareGiBUU -i EventOutput.Pert.000000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
 #for i in {100..300}; do PrepareGiBUU -i EventOutput.Pert.00000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
 
-PrepareGiBUU -i EventOutput.Pert.00000001.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU.prep.root
+PrepareGiBUU -i EventOutput.Pert.00000001.root -f sbnd_flux.root,sbnd_flux_numu -o GiBUU.prep.root
 
 # Convert to Nuisance flat tree format
 #for i in {1..300}; do nuisflat -i GiBUU:GiBUU_${i}.prep.root -o samples/GiBUU_${i}.flat.root; done
