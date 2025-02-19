@@ -6,5 +6,11 @@ cd ../achilles/build
 
 cd -
 mv ../achilles/build/achilles.hepmc ./
-# this line is not working / complaining about missing libtbb libraries
-nuisflat -i NuHepMC:achilles.hepmc -o achilles.flat.root  
+
+## this line is not working
+#nuisflat -i NuHepMC:achilles.hepmc -o achilles.flat.root  
+
+cp achilles.hepmc ../neut_container/interactive/
+cd ../neut_container/interactive
+/cvmfs/oasis.opensciencegrid.org/mis/apptainer/current/bin/apptainer exec nuisance_nuint2024.sif /bin/bash nuisflat -i NuHepMC:achilles.hepmc -o achilles.flat.root
+
