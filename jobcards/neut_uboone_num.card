@@ -6,7 +6,7 @@ EVCT-MDIR 1
 EVCT-DIR 0. 0. 1.
 EVCT-MPV 3
 EVCT-FILENM  'sbnd_flux.root'
-EVCT-HISTNM  'sbnd_flux_numu'
+EVCT-HISTNM  'flux_sbnd_numu'
 
 EVCT-INMEV 0
 NEUT-NUMBNDN 22
