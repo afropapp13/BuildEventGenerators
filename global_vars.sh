@@ -40,3 +40,4 @@ setup hepmc3 v3_2_7 -q e26:p3915:prof
 setup geant4 v4_11_2_p02 -q e26:prof
 setup inclxx v5_2_9_5f -q e26:prof
 setup hdf5 v1_12_2b -q e26:prof
+setup spdlog v1_9_2 -q e26:prof

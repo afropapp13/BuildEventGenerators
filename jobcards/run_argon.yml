@@ -1,29 +1,32 @@
 Main:
-  NEvents: 50000
-  HardCuts: true
+  NEvents: 10000
+  HardCuts: false
   EventCuts: false
   DoRotate: false
   RunDecays: False
   Output:
       Format: NuHepMC
-      Name: achilles.hepmc
+      Name: achilles_argon.hepmc
       Zipped: True
 
-#SherpaOptions: !include "data/default/SherpaOptions.yml"
+SherpaOptions: !include "data/default/SherpaOptions.yml"
 
 Processes:
-  - Leptons: [11, [11]]
+  - Leptons: [14, [13]]
 
 Beams:
   - Beam:
-      PID: 11
+      PID: 14
       Beam Params:
-        Type: Monochromatic
-        Energy: 1108
+        Type: Spectrum
+        HepData: flux/microboone_flux_numu.yaml
 
 Cascade:
-  Run: False
+  Run: True
   Interactions:
+    # - Name: DeltaInteraction
+    #   Options:
+    #     Mode: 1
     - Name: GeantInteraction
       Options:
         GeantData: data/GeantData.hdf5
@@ -38,6 +41,14 @@ Cascade:
     - Name: ConstantInteraction
       Options:
         InitialStates:
+          - Incoming: [22, 2112]
+            Outgoing: 
+              - Outgoing: [22, 2112]
+                CrossSection: 0
+          - Incoming: [22, 2212]
+            Outgoing: 
+              - Outgoing: [22, 2212]
+                CrossSection: 0
           - Incoming: [3112, 2112]
             Outgoing: 
               - Outgoing: [3112, 2112]
@@ -92,21 +103,34 @@ Cascade:
   PotentialProp: False
   Algorithm: Base
 
+
 NuclearModels:
-  - NuclearModel: !include "data/default/QEOptions.yml"
-  #- NuclearModel: !include "data/default/IntfOptionsF.yml"
-  #- NuclearModel: !include "data/default/RESOptionsF.yml"
-  #- NuclearModel: !include "data/default/HyperonOptions.yml"
+  - NuclearModel: 
+     Model: QESpectral
+     FormFactorFile: "FormFactors.yml"
+     SpectralP: data/Spectral_Functions/pke40p_tot.data
+     SpectralN: data/Spectral_Functions/pke40n_tot.data
+     Ward: Coulomb
+  - NuclearModel: 
+     Model: FortranModel
+     Name: RES_Spectral_Func
+     ConfigFile: data/info_Ar40_pke.data 
+     FormFactorFile: "FormFactors.yml"
+     Ward: None
 
 Nuclei:
-  - Nucleus: !include "data/default/12C.yml"
+  - Nucleus: !include "data/default/40Ar.yml"
 
 HardCuts:
   - Type: AngleTheta
-    PIDs: 11
-    range: [36.5, 38.5]
+    PIDs: 13
+    range: [15, 16]
 
 Options: !include "data/default/OptionDefaults.yml"
+
+Cache:
+  Save: True
+  Load: True
 
 Backend:
   Name: Default

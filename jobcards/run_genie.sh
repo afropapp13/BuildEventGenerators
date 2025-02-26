@@ -1,15 +1,20 @@
 #!/bin/bash
 
 export events="100"
-export version="v3_4_2"
+export version="v3_6_0"
+
 export tune="AR23_20i_00_000"
+#export tune="G18_10a_02_11a"
+
 export probe="14"
 export target="1000180400"
 export interaction="CC"
 export minE="0."
 export maxE="10."
-export fluxfile="./MCC9_FluxHist_volTPCActive.root"
-export fluxhisto="hEnumu_cv"
+
+export fluxfile="./sbnd_flux.root";export fluxhisto="flux_sbnd_numu"
+#export fluxfile="./MCC9_FluxHist_volTPCActive.root";export fluxhisto="hEnumu_cv"
+
 export outdir="./samples"
 
 # Produce the GENIE splines
@@ -31,5 +36,5 @@ PrepareGENIE -i ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.g
 nuisflat -i GENIE:${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.gprep.root -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.flat.root
 
 # Remove all unnecessary files
-#rm *.status 
+##rm *.status 
 rm input-flux.root

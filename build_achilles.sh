@@ -11,10 +11,10 @@ git checkout dev
 
 mkdir build
 cd build
-cmake .. -DENABLE_BSM=OFF -DUSE_ROOT=ON
+cmake .. -DUSE_ROOT=ON
 make -j4
 
-export LD_LIBRARY_PATH=/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/lib64/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/cvmfs/larsoft.opensciencegrid.org/products/gcc/v12_1_0/Linux64bit+3.10-2.17/lib64/:$LD_LIBRARY_PATH
 
 cd $BASE_DIR
 

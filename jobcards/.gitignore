@@ -1,3 +1,5 @@
+samples/*.root
+samples/*.hepmc
 genie-mcjob-0.status
 gntp.0.ghep.root
 gntp.0.gst.root
