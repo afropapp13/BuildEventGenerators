@@ -20,7 +20,7 @@ NEUT-MAQE 1.05
 C Generate with Nieves 2p2h
 NEUT-MDL2P2H 1
 
-## Look for a seed at RANFILE
+C Look for a seed at RANFILE
 NEUT-RAND 0
 
 C NUCRES-RESCAT 0: on (default) 0: off (FSIs on: 1; FSIs off: 0)
