@@ -4,7 +4,7 @@
 OUTFILE=NEUT.root
 
 ## The file that sets physics parameters for the NEUT simulation
-INCARD=neut_uboone_num.card
+INCARD=neut_argon.card
 
 ## NEUT uses the clock time for random seeding. To override this, you must provide a text file with a series of random numbers
 ## This file is accessed with the $RANFILE environment variable
