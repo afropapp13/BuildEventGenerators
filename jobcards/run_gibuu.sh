@@ -8,7 +8,7 @@
 #for i in {10..99}; do PrepareGiBUU -i EventOutput.Pert.000000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
 #for i in {100..300}; do PrepareGiBUU -i EventOutput.Pert.00000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
 
-PrepareGiBUU -i EventOutput.Pert.00000001.root -f sbnd_flux.root,sbnd_flux_numu -o GiBUU.prep.root
+PrepareGiBUU -i EventOutput.Pert.00000001.root -f sbnd_flux.root,flux_sbnd_numu -o GiBUU.prep.root
 
 # Convert to Nuisance flat tree format
 #for i in {1..300}; do nuisflat -i GiBUU:GiBUU_${i}.prep.root -o samples/GiBUU_${i}.flat.root; done
