@@ -22,4 +22,3 @@ nuisflat -f GenericVectors -i NEUT:${OUTFILE} -o ${OUTFILE/.root/.flat.root}
 
 ## Clean up the files NEUT creates when generating events
 rm *_o.root ranfile.txt
-

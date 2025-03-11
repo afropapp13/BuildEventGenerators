@@ -14,6 +14,9 @@ cd ../neut_container/interactive
 
 /cvmfs/oasis.opensciencegrid.org/mis/apptainer/current/bin/apptainer exec nuisance_nuint2024.sif /bin/bash -x run_neut_container.sh
 
+cd -
+mv ../neut_container/interactive/NEUT.flat.root samples/
+
 ##############################################################
 
 ## The output file name
