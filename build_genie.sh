@@ -49,10 +49,11 @@ source ../genie_env.sh
   --enable-pythia6 \
   --enable-hepmc3 \
   --enable-incl \
+  --enable-atmo \
   --with-incl-inc=${INCLXX_FQ_DIR}/include/inclxx \
   --with-incl-lib=${INCLXX_FQ_DIR}/lib \
   --with-boost-inc=${BOOST_FQ_DIR}/include \
-  --with-boost-lib=${BOOST_FQ_DIR}/lib
+  --with-boost-lib=${BOOST_FQ_DIR}/lib \
   --with-pythia6-lib=${PYTHIA_LIB}
 EOF
 }
