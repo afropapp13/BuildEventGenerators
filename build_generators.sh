@@ -1,6 +1,5 @@
 #!/bin/bash                                                                                                                                                                                               
-
-# GENIE v3.4.2
+# GENIE v3.6.0
 ./build_genie.sh
 
 # GiBUU 2025
