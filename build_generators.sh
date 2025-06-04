@@ -17,4 +17,6 @@
 
 ./build_nusyst.sh
 
+./build_hepmc3.sh
+
 ./build_nuisance.sh

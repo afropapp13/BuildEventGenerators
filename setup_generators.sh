@@ -43,6 +43,10 @@ export PATH=$NUWRO/bin:$PATH
 #NuSystematics
 source ${BASE_DIR}/nusystematics/build/Linux/bin/setup.nusystematics.sh
 
+#Achilles
+export HepMC3_ROOT=${BASE_DIR}/HepMC3/hepmc3-install
+export LD_LIBRARY_PATH=${BASE_DIR}/HepMC3/hepmc3-install/lib64:${LD_LIBRARY_PATH}
+
 # NUISANCE
 source ${BASE_DIR}/nuisance/build/Linux/setup.sh
 #echo "NUISANCE setup is ready!"
