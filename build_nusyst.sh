@@ -4,10 +4,9 @@
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )"
 source setup_generators.sh
 
-# Cloning the NEUT repo
 git clone https://github.com/NuSystematics/nusystematics.git
 cd nusystematics
-git checkout tags/v02_00_01
+git checkout tags/v02_00_05
 
 mkdir build
 cd build

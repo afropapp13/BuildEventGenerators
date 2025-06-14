@@ -25,7 +25,6 @@ then
 	source /cvmfs/icarus.opensciencegrid.org/products/icarus/setup_icarus.sh
 fi
 
-
 #DUNE
 if [[ "${hostgpvm}" == "dune" ]] 
 then 
@@ -43,7 +42,7 @@ setup boost v1_82_0 -q e26:prof
 setup tbb v2021_9_0 -q e26
 setup sqlite v3_40_01_00
 setup pythia v6_4_28x -q e26:prof
-#setup hepmc3 v3_3_0 -q e26:p3915:prof
+setup hepmc3 v3_3_1 -q e26:p3915:prof
 setup geant4 v4_11_2_p02 -q e26:prof
 setup inclxx v5_2_9_5f -q e26:prof
 setup hdf5 v1_12_2b -q e26:prof

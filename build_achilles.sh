@@ -10,7 +10,7 @@ git checkout dev
 
 mkdir build
 cd build
-cmake .. -DUSE_ROOT=ON -DHepMC3_DIR=${BASE_DIR}/HepMC3/hepmc3-install
+cmake .. -DUSE_ROOT=ON
 make -j4
 
 export LD_LIBRARY_PATH=/cvmfs/larsoft.opensciencegrid.org/products/gcc/v12_1_0/Linux64bit+3.10-2.17/lib64/:$LD_LIBRARY_PATH

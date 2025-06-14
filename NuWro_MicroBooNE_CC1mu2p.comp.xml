@@ -1,9 +1,0 @@
-<nuisance>
-  <config NUWRO_DIR="/uboone/app/users/apapadop/BuildEventGenerators/nuwro" />
-  <sample name="MicroBooNE_CC1Mu2p_XSec_1DDeltaPT_nu" 
-input="NUWRO:/uboone/app/users/apapadop/BuildEventGenerators/jobcards/eventsout.root" />
-  <sample name="MicroBooNE_CC1Mu2p_XSec_1DOpening_Angle_Protons_Lab_nu"
-input="NUWRO:/uboone/app/users/apapadop/BuildEventGenerators/jobcards/eventsout.root" />
-  <sample name="MicroBooNE_CC1Mu2p_XSec_1DOpening_Angle_Mu_Both_nu"
-input="NUWRO:/uboone/app/users/apapadop/BuildEventGenerators/jobcards/eventsout.root" />
-</nuisance>
