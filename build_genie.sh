@@ -62,12 +62,12 @@ git clone https://github.com/GENIE-MC/Generator.git
 git clone https://github.com/GENIE-MC/Reweight.git
 write_genie_env_script
 cd Generator
-git checkout -b v3.6.0 R-3_06_00
+git checkout -b v3.6.2 R-3_06_02
 write_do_configure_script
 source do_configure.sh
 make -j4
 cd ../Reweight
-git checkout -b v1.4.0 R-1_04_00
+git checkout -b v1.4.2 R-1_04_02
 make -j4
 cd ..
 echo "DONE!"
