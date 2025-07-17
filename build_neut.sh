@@ -5,7 +5,7 @@
 
 git clone https://github.com/NUISANCEMC/tutorials.git neut_container
 cd neut_container/interactive
-singularity pull nuisance_nuint2024.sif docker://nuisancemc/tutorial:nuint2024
+singularity pull nuisance_nuint2024.sif docker://wilkinsonnu/nuisance_project:neut_5.8.0
 wget https://github.com/afropapp13/BuildEventGenerators/raw/master/jobcards/sbnd_flux.root
 wget https://raw.githubusercontent.com/afropapp13/BuildEventGenerators/refs/heads/master/jobcards/neut_argon.card
 wget https://raw.githubusercontent.com/afropapp13/BuildEventGenerators/refs/heads/master/jobcards/run_neut.sh
