@@ -1,6 +1,6 @@
 #!/bin/bash
 
-##use conatiner instructions below
+##use container instructions below
 ##https://docs.google.com/document/d/1NIrI9BW4Vxw-zYUvec-hsDPSAluAqLuumdj27TG5cic/edit?usp=sharing
 
 ####################################################################
