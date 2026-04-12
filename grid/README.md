@@ -20,3 +20,8 @@ GIT_CHECKOUT = identifier passed to git to indicate what version of the code you
 example:
 
 ./submit_genie.sh 2 afro_grid_test_gene args.txt /pnfs/sbnd/persistent/users/apapadop/grid/14_1000180400_CC_v3_6_0_AR23_20i_00_000.xml /pnfs/sbnd/persistent/users/apapadop/grid/sbnd_flux.root flux_sbnd_numu /pnfs/sbnd/persistent/users/apapadop/grid/ tags/R-3_06_00
+
+
+####
+
+jobsub_submit -G $(id -ng) --dag file:///pnfs/sbnd/scratch/users/apapadop/gen_genie_splines_v3/GXSPLINES-v3_06_02_sbn2-AR2520i00000-k250-e1000-CCQE/cfg/genie_splines.dag

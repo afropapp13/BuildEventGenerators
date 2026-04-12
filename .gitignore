@@ -1,4 +1,5 @@
 neut_container
+grid/*.log
 HepMC3
 */*/*.status
 jobcards/achilles.hepmc

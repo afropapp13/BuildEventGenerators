@@ -30,11 +30,20 @@ export LD_LIBRARY_PATH=${BASE_DIR}/pythia6:$NUWRO/lib:$NUWRO/bin:$LD_LIBRARY_PAT
 export PATH=$NUWRO/bin:$PATH
 
 #NuSystematics
-source ${BASE_DIR}/nusystematics/build/Linux/bin/setup.nusystematics.sh
+if [ -f "${BASE_DIR}/nusystematics/build/Linux/bin/setup.nusystematics.sh" ]; then
+    echo "Sourcing NuSystematics setup..."
+    source "${BASE_DIR}/nusystematics/build/Linux/bin/setup.nusystematics.sh"
+else
+    echo "NuSystematics setup not found (skipping)"
+fi
 
 # NUISANCE
-source ${BASE_DIR}/nuisance/build/Linux/setup.sh
-#echo "NUISANCE setup is ready!"
+if [ -f "${BASE_DIR}/nuisance/build/Linux/setup.sh" ]; then
+    echo "Sourcing NUISANCE setup..."
+    source "${BASE_DIR}/nuisance/build/Linux/setup.sh"
+else
+    echo "NUISANCE setup not found (skipping)"
+fi
 
-htgettoken -a htvaultprod.fnal.gov -i sbnd
-#htgettoken -a htvaultprod.fnal.gov -i uboone
+export HTTOKEN_ROLE="${EXPERIMENT,,}"
+htgettoken -a htvaultprod.fnal.gov -i "${HTTOKEN_ROLE}" || true
