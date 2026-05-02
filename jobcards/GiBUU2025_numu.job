@@ -333,3 +333,24 @@ $nl_specificEvent
 &initRandom
       SEED=45678                ! Seed for the random number
 /
+
+! file: code/init/lepton/formfactors_QE_nucleon/FF_QE_nucleonScattering.f90
+&ff_QE
+      parametrizationAxial=2 !! Select which axial form fact parameterization to use.
+                             !! Option 0 is the stadard dipole form factor.
+                             !! Option 1 is the ff. of Gari, Kaulfuss PLB 138 (1984).
+                             !! Option 2 is z-expansion from MINERvA fit in Nature 614, 48-53 (2023).
+                             !! Option 3 is the z-expansion from LQCD fit in arXiv:2512.14097 eq (41).
+                             !! Option 4 is z-expansion from Deuterium fit in arXiv:2512.14097 eq (50).
+                             !! Option 5 is a configurable custom z expansion, must specify tc, t0, ak, kmax.
+
+      !! These next two only matter if parametrizationAxial=0 or parametrizationAxial=1
+      ! useNonStandardMA=.true. ! Set true if you want to use M_A other than 1.0.
+      ! MA_in=1.2
+
+      !! These next four only matter if parametrizationAxial=5.
+      !! tc=0.173889
+      !! t0=-0.75
+      !! ak=-0.5,1.50,-1.2,-0.1,0.2,0.46,-0.4,0.15,-0.044
+      !! kmax=8
+/

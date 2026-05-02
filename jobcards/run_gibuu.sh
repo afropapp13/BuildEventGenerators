@@ -3,29 +3,36 @@
 # Generate GiBUU events
 ../GiBUU/release/testRun/./GiBUU.x < GiBUU2025_numu.job
 
-# Convert to Nuisance format
-#for i in {1..9}; do PrepareGiBUU -i EventOutput.Pert.0000000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
-#for i in {10..99}; do PrepareGiBUU -i EventOutput.Pert.000000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
-#for i in {100..300}; do PrepareGiBUU -i EventOutput.Pert.00000${i}.root -f MCC9_FluxHist_volTPCActive.root,hEnumu_cv -o GiBUU_${i}.prep.root; done
+# Convert all GiBUU outputs to Nuisance prep format
+for f in EventOutput.Pert.*.root; do
+    [ -e "$f" ] || continue  # skip if no files match
 
-PrepareGiBUU -i EventOutput.Pert.00000001.root -f sbnd_flux.root,flux_sbnd_numu -o GiBUU.prep.root
+    # extract run number (everything after last dot, before .root)
+    num=$(basename "$f" .root | awk -F. '{print $NF}')
+
+    echo "Preparing $f -> GiBUU_${num}.prep.root"
+    PrepareGiBUU -i "$f" -f sbnd_flux.root,flux_sbnd_numu -o "GiBUU_${num}.prep.root"
+done
 
 # Convert to Nuisance flat tree format
-#for i in {1..300}; do nuisflat -i GiBUU:GiBUU_${i}.prep.root -o samples/GiBUU_${i}.flat.root; done
-nuisflat -i GiBUU:GiBUU.prep.root -o samples/GiBUU.flat.root
 
-#cd samples
-#hadd GiBUU2023.flat.root GiBUU*.flat.root
-#mv GiBUU2023.flat.root /pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2023/GiBUU2023_300runs.root
-##rm *.root
-#cd ..
+for f in GiBUU_*.prep.root; do
+    [ -e "$f" ] || continue
 
-# Remove unnecessary files
-#rm *.prep.root
-rm *.dat
-rm GiBUU_database_decayChannels.txt
-rm GiBUU_database.tex
-rm main.run
-rm PYR.RG
-rm EventOutput.Pert.0000*.root
-rm *.prep.root
+    num=$(basename "$f" .prep.root | sed 's/GiBUU_//')
+
+    echo "Flattening $f -> samples/GiBUU_${num}.flat.root"
+    nuisflat -i GiBUU:"$f" -o "samples/GiBUU_${num}.flat.root"
+done
+
+# Optionally merge everything
+hadd samples/GiBUU_all.flat.root samples/GiBUU_*.flat.root
+
+# Cleanup
+rm -f *.dat
+rm -f GiBUU_database_decayChannels.txt
+rm -f GiBUU_database.tex
+rm -f main.run
+rm -f PYR.RG
+rm -f EventOutput.Pert.*.root
+rm -f *.prep.root
