@@ -6,7 +6,7 @@ source setup_generators.sh
 
 git clone https://github.com/NuSystematics/nusystematics.git
 cd nusystematics
-git checkout tags/v02_00_05
+git checkout tags/v02_00_07
 
 mkdir build
 cd build
