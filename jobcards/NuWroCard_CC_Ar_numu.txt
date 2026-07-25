@@ -10,7 +10,7 @@ number_of_test_events = 1000000
 
 # The number of equally weighted events to be saved:
 
-number_of_events      = 100
+number_of_events      = 100000
 
 # Control the random seed persistence:
 random_seed  = 0     // 0 - use time(NULL) as a seed for random number generator
@@ -134,9 +134,9 @@ qel_strangeEM = 0      // dont use the strangenes in the vector ff
 delta_s = 0
 
 # Axial mass:
-qel_cc_axial_mass = 1026 // [MeV] axial mass
-qel_nc_axial_mass = 1026 // [MeV] axial mass
-qel_s_axial_mass  = 1026 // [MeV] axial mass used in the strange dipole ff
+qel_cc_axial_mass = 1030 // [MeV] axial mass
+qel_nc_axial_mass = 1030 // [MeV] axial mass
+qel_s_axial_mass  = 1030 // [MeV] axial mass used in the strange dipole ff
 
 # 1sigma uncertainty for the MINERvA and deuterium axial FF (to be used with axial ff options 8 or 9)
 #qel_minerva_ff_scale = 0 // range from -1 to +1
@@ -167,12 +167,13 @@ sf_method  = 1 // Jlab SF for Argon, new grid SF for C, grid SF for O and Fe
 #sf_method = 3 // factorized SF for O, Ar, Ca
 
 sf_transparency_table_idx = 1 # Transparency
-#                               1 - Theoretical, 2 - NuWro MC
-sf_transparency_scale = 1  # Scale transparency
+#                               1 - Theoretical (see arXiv:2508.10101 [hep-ph])
+#                               2 - tuned NuWro MC for stronger INC (see Phys.Rev.D 113 (2026) 9, 096023)
+sf_transparency_scale = 1  # Scale transparency for uncertainty analysis
 #                            [0.97,1.03] for table_idx = 1
-#                            [0.7,1.3] for table_idx =2
-sf_nuclearRecoil = 1      # Nuclear recoil
-sf_CoulombDistortion = 1  # Couloumb distortion
+#                            [0.947,1.079] for table_idx = 2
+sf_recoil = 1             # Nuclear recoil
+sf_Coulomb = 1            # Couloumb distortion (for U_switch = 1)
 sf_src = 1                # Short range NN correlations
 sf_pb = 1                 # Pauli blocking method used for SF:
 #                           1- average Fermi momentum, 2- local Fermi momentum
@@ -234,7 +235,7 @@ delta_angular  = 2 // BNL distribution, produces 4-momenta of final pair:
 
 # It is recommended to keep the default values here:
 spp_precision = 500  // precision of he boundary, default 500
-res_dis_cut   = 1600 // position of the boundary, default 1600 [MeV]
+#res_dis_cut  = 1900 // boundary,
 
 # Ability to scale the background:
 bkgrscaling   = 0.0  // non-resonant background scaling;
@@ -334,15 +335,15 @@ hyp_su3_sym_breaking = 0 // SU(3) symmetry breaking
 #
 ################################################################################
 
-# Turn on FSI
+# Turn on Final-state Interactions
 FSI_on       = 1  // use (1) or not (0)
 
 # Total work of the cascade W (Eb = Ef + W);
 kaskada_w        = 7  // literature [7 MeV, 9 MeV]
 
-# For sf_method != 0 
-# U_switch = 1 → use optical potential U in cascade (kaskada_w = 0)
-# U_switch = 0 → ignore U and keep kaskada_w
+# For sf_method != 0 in QE
+# U_switch = 1 → use nuclear potential 
+# U_switch = 0 → ignore nuclear potential 
 U_switch = 1
 
 # Models for the description of nucleus in the cascade:
@@ -358,7 +359,8 @@ step = 0.2           // length of one step in cascade
 # It has been checked against transparency data that
 # the uncertainty here is not larger than +- 30%
 # -> see Phys.Rev. C 100 (2019) 015505
-kaskada_NN_mfp_scale = 1.0
+# Later study (see Phys.Rev.D 113 (2026) 9, 096023) resulted in estimate s=0.76-0.04+0.06
+kaskada_NN_mfp_scale = 0.76
 
 # Input data for the cascade:
 kaskada_NN_xsec  = 2 // NN cross sections:  (0) Metropolis et al.,
@@ -397,4 +399,3 @@ el_costh_del = 0.001 // defines angular acceptance for the scattered electron
 #                       ( the acceptance in cosine is from (el_costh_lab -
 #                         el_costh_del) to (el_costh_lab + el_costh_del),
 #                         the width is 2*el_costh_del )
-# nothing
