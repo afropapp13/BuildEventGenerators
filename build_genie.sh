@@ -33,28 +33,34 @@ cat > ./do_configure.sh << 'EOF'
 source ../genie_env.sh
 
 ./configure \
+  --with-compiler=gcc \
+  ${OPT_FLAGS} \
+  --enable-fnal \
+  --enable-gfortran \
   --enable-gsl \
-  --enable-geant4 \
   --enable-rwght \
-  --with-lhapdf6-lib=${LHAPDF_LIB} \
-  --with-lhapdf6-inc=${LHAPDF_INC} \
+  --enable-atmo \
+  --enable-geant4 \
+  --with-geant4-inc=${GEANT4_FQ_DIR}/include \
+  --with-geant4-lib=${GEANT4_FQ_DIR}/lib \
   --disable-lhapdf5 \
   --enable-lhapdf6 \
-  --with-optimiz-level=O2 \
+  --with-lhapdf6-inc=${LHAPDF_INC} \
+  --with-lhapdf6-lib=${LHAPDF_LIB} \
+  --enable-pythia8 \
+  --disable-pythia6 \
+  --with-pythia8-inc=${PYTHIA8_INC} \
+  --with-pythia8-lib=${PYTHIA8_LIB} \
+  --enable-hepmc3 \
+  --enable-incl \
+  --with-incl-inc=${INCLXX_FQ_DIR}/include/inclxx \
+  --with-incl-lib=${INCLXX_FQ_DIR}/lib \
   --with-log4cpp-inc=${LOG4CPP_INC} \
   --with-log4cpp-lib=${LOG4CPP_LIB} \
   --with-libxml2-inc=${LIBXML2_INC} \
   --with-libxml2-lib=${LIBXML2_LIB} \
-  --disable-pythia8 \
-  --enable-pythia6 \
-  --enable-hepmc3 \
-  --enable-incl \
-  --enable-atmo \
-  --with-incl-inc=${INCLXX_FQ_DIR}/include/inclxx \
-  --with-incl-lib=${INCLXX_FQ_DIR}/lib \
   --with-boost-inc=${BOOST_FQ_DIR}/include \
-  --with-boost-lib=${BOOST_FQ_DIR}/lib \
-  --with-pythia6-lib=${PYTHIA_LIB}
+  --with-boost-lib=${BOOST_FQ_DIR}/lib
 EOF
 }
 
@@ -62,12 +68,12 @@ git clone https://github.com/GENIE-MC/Generator.git
 git clone https://github.com/GENIE-MC/Reweight.git
 write_genie_env_script
 cd Generator
-git checkout -b v3.6.2 R-3_06_02
+git checkout -b v3.8.0 R-3_08_00
 write_do_configure_script
 source do_configure.sh
-make -j4
+make -j4 GOPT_WITH_COMPILER=gcc
 cd ../Reweight
-git checkout -b v1.4.2 R-1_04_02
-make -j4
+git checkout -b v1.6.0 R-1_06_00
+make -j4 GOPT_WITH_COMPILER=gcc
 cd ..
 echo "DONE!"

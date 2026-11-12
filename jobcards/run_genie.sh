@@ -1,9 +1,9 @@
 #!/bin/bash
 
 export events="100"
-export version="v3_6_2"
+export version="v3_8_0"
 
-export tune="AR23_20i_00_000"
+export tune="AR25_20m_01_002"
 
 export probe="14"
 export target="1000180400"
@@ -17,7 +17,7 @@ export fluxfile="./sbnd_flux.root";export fluxhisto="flux_sbnd_numu"
 export outdir="./samples"
 
 # Produce the GENIE splines
-#gmkspl -p ${probe} -t ${target} -e ${maxE} -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.xml --tune ${tune} --event-generator-list ${interaction}
+gmkspl -p ${probe} -t ${target} -e ${maxE} -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.xml --tune ${tune} --event-generator-list ${interaction}
 
 # Convert the xml splines to root format
 gspl2root -f ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.xml --event-generator-list ${interaction} -p ${probe} -t ${target} -o ${outdir}/${probe}_${target}_${interaction}_${version}_${tune}.xml.root --tune ${tune}

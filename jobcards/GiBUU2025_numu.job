@@ -138,7 +138,7 @@
       eventtype=5               ! 5=neutrino, 200=simple transport of a given particle
 
       num_runs_SameEnergy=1     ! increase these if you want to increase statistics (= number of generated events)
-      numEnsembles=100         ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory
+      numEnsembles=2000         ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory
       numTimeSteps=150          ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
       	                        ! for inclusive cross sections set numTimeSteps= 0; set this to 0 for inclusive cross sections.
       delta_T=0.2               ! timestep for FSI trajectories
