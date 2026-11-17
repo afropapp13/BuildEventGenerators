@@ -8,6 +8,12 @@ cd nuisance
 #git checkout v2r8
 mkdir build
 cd build
-cmake -DGENIE_ENABLED=ON -DNuWro_ENABLED=ON -DNEUT_ENABLED=ON -DGiBUU_ENABLED=ON -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_BUILD_TYPE=Debug -DProb3plusplus_ENABLED=ON -Dnusystematics_ENABLED=ON -DNuHepMC_ENABLED=ON  ../
+
+NEUT_FLAG="OFF"
+if command -v neutroot2 >/dev/null 2>&1; then
+    NEUT_FLAG="ON"
+fi
+
+cmake -DGENIE_ENABLED=ON -DNuWro_ENABLED=ON -DNEUT_ENABLED=${NEUT_FLAG} -DGiBUU_ENABLED=ON -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_BUILD_TYPE=Debug -DProb3plusplus_ENABLED=ON -Dnusystematics_ENABLED=ON -DNuHepMC_ENABLED=ON  ../
 make
 make install

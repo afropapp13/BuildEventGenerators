@@ -12,7 +12,14 @@ if [[ ${USER} == "apapadop" ]]; then
     git fetch --tags
     git checkout tags/6.2.3
 else
-    cp -rf /exp/sbnd/app/users/apapadop/BuildEventGenerators/neut ./
+    case "${hostgpvm}" in
+        uboone) printf "Grabbing NEUT from uboone location.\n"; cp -rf /exp/uboone/data/users/bbogart/new_BuildEventGen/BuildEventGenerators/neut ./ ;;
+        sbnd)   printf "Grabbing NEUT from SBND location.\n"; cp -rf /exp/sbnd/app/users/apapadop/BuildEventGenerators/neut ./ ;;
+        icarus) printf "Grabbing NEUT from SBND location.\n"; cp -rf /exp/sbnd/app/users/apapadop/BuildEventGenerators/neut ./ ;;
+        dune)   printf "Sorry DUNE, no NEUT.\n"; exit 0 ;;
+        *)      printf "Sorry, no NEUT/\n"; exit 0 ;;   # generic fallback
+    esac
+    export EXPERIMENT=${EXPERIMENT:-${hostgpvm}}
     rm -rf neut/build
     cd neut
 fi
