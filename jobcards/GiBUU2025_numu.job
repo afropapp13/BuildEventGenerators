@@ -139,9 +139,9 @@
 
       num_runs_SameEnergy=1     ! increase these if you want to increase statistics (= number of generated events)
       numEnsembles=2000         ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory
-      numTimeSteps=150          ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
+      numTimeSteps=300          ! the distance numTimeSteps*delta_T (300*0.1=30 fm in this example) should significantly exceed the radius of the target nucleus
       	                        ! for inclusive cross sections set numTimeSteps= 0; set this to 0 for inclusive cross sections.
-      delta_T=0.2               ! timestep for FSI trajectories
+      delta_T=0.1               ! timestep for FSI trajectories (0.1 recommended for production; 0.2 ok for exploratory runs)
 
       fullensemble=.true.
       localEnsemble=.true.
@@ -191,6 +191,21 @@
                                 ! and other switches are not meaningful/relevant
       mediumSwitch_Delta=.false. ! Use Oset broadening of the Delta (only relevant for mediumSwitch_coll=.true.)
       mediumSwitch_coll=.false. ! Use collisional broadening of all resonances
+/
+
+!################################################################
+! now inmed-changes of NN X-sections
+!################################################################
+! NOTE: since patch 6, flagInMedium=.true. cannot be combined with the
+! Oset broadening of the Delta (mediumSwitch_Delta in &width_Baryon above);
+! keep mediumSwitch_Delta=.false. while this is on.
+
+! file: code/collisions/phaseSpace/XsectionRatios.f90
+&XsectionRatios_input
+      flagInMedium = .true.     ! turns on in-medium changes of NN cross sections in deciding to keep an event
+!  switches only relevant if flagInMedium = .true. :
+      InMediumMode = 2          ! Machleidt et al. in-medium corrections of elastic NN X-sections (weakens them)
+      alpha = 1.0               ! decreases Delta production and pion reabsorption
 /
 
 

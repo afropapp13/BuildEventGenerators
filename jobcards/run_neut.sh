@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #run neut
-neutroot2 NEUT_6.1.4_CC_numu.toml samples/neut.ghep.root
+neutroot2 NEUT_6.2.3_CC_numu.toml samples/neut.ghep.root
 
 ## Only one NUISANCE step is required for NEUT
 #echo "Creating NUISANCE flat trees"
